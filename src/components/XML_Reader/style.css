@@ -1,0 +1,18 @@
+.XML__schema-reader-form{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #223843;
+    padding: 2rem;
+    border-radius: 5px;
+}
+
+.form__button--submit{
+    padding: 5px;
+    background: #223843;
+    color: white;
+    cursor: pointer;
+}
+
+.form__input_container{
+    margin: 0.5rem;
+}
