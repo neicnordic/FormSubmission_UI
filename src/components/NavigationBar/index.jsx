@@ -28,6 +28,7 @@ const MobileTabs = props => {
                                     if (props.history.location.pathname !== '/')
                                         props.history.push("/")
                                     props.setSchemaType(tab)
+                                    setDisplayMenu(!displayMenu)
                                 }}>
                                 {tab}
                             </span>
@@ -91,9 +92,11 @@ const NavigationBar = props => {
             {isMobile ?
                 <MobileTabs
                     history={history}
+                    setSchemaType={props.setSchemaType}
                     formTabs={formTabs} /> :
                 <DesktopTabs
                     history={history}
+                    setSchemaType={props.setSchemaType}
                     formTabs={formTabs} />}
         </nav>
     )
