@@ -11,7 +11,6 @@ const XMLSchemaReader = (props) => {
 
     const parseFile = (stringXML) => {
         var xml = new XMLParser().parseFromString(stringXML);    // Assume xmlText contains the example XML
-        console.log(xml)
         props.setXMLSchema(xml)
     }
 

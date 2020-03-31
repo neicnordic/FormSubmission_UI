@@ -4,20 +4,37 @@ import TagChild from "../TagChild"
 import "./style.css"
 
 const XMLForm = (props) => {
-    const [formContent, setFormContent] = useState(null)
-    const [formValues, setFormValues] = useState(null)
+    const [formTreeComponents, setFormTreeComponents] = useState(null)
+    const [formContent, setFormContent] = useState({})
 
     useEffect(() => {
         if (props.schema) {
-            setFormValues(props.schema)
-            setFormContent(parseTree(props.schema))
+            let content = {}
+
+            props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
+            setFormContent(content);
+
+            setFormTreeComponents(parseTree(props.schema));
         }
     }, [props.schema])
+
+    const handleChildChange = (change, name) => {
+        console.log(name)
+        console.log({
+            ...formContent,
+            [name]: change
+        })
+    };
 
 
     const parseTree = tree => {
         const treeName = tree.name
-        const content = tree.childs.map(child => <TagChild child={child} />)
+        const content = tree.childs.map(child =>
+            <TagChild
+                handleChange={handleChildChange}
+                key={child.name}
+                child={child} />
+        )
 
         return (
             <div className="xml_form__content">
@@ -30,7 +47,7 @@ const XMLForm = (props) => {
 
     return (
         <form className="xml_form__container">
-            {formContent}
+            {formTreeComponents}
         </form>
     )
 }
