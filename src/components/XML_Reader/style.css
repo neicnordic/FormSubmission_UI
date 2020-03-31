@@ -1,4 +1,4 @@
-.XML__schema-reader-form{
+.form_XML{
     display: flex;
     flex-direction: column;
     border: 2px solid #223843;
@@ -6,13 +6,38 @@
     border-radius: 5px;
 }
 
-.form__button--submit{
+.form_XML__button--submit{
     padding: 5px;
     background: #223843;
     color: white;
     cursor: pointer;
 }
 
-.form__input_container{
-    margin: 0.5rem;
+.form_XML__input_container{
+    margin: 1rem 0.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.button_controller{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.button__tab{
+    color: white;
+    border: none;
+    background-color:#233843;
+    outline: none;
+    margin: 0.3rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    width: 150px;
+}
+
+.button__tab:hover{
+    font-weight: bold;
+    background-color:#142025;
+
 }

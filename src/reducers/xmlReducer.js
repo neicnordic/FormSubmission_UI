@@ -5,6 +5,8 @@ import {
 
 const initialState = {
     xml_schema: null,
+    schema_type: null,
+    form_schema: null
 }
 
 export default function (state = initialState, action) {
@@ -12,7 +14,13 @@ export default function (state = initialState, action) {
         case XML_SCHEMA_ACTIONS.SET_XML_SCHEMA:
             return {
                 ...state,
-                xml_schema: action.schema
+                xml_schema: action.schema,
+            }
+        case XML_SCHEMA_ACTIONS.SET_SCHEMA_TYPE:
+            return {
+                ...state,
+                schema_type: action.schema_type,
+                form_schema: action.schema
             }
         default:
             return state;

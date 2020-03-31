@@ -1,3 +1,6 @@
+## Tryggve FE
+
+This project consist of a front end interface to upload and fill .xsd schemas.
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
