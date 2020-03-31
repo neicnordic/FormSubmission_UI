@@ -18,9 +18,9 @@ const XMLForm = (props) => {
         }
     }, [props.schema])
 
+
     const handleChildChange = (change, name) => {
-        console.log(name)
-        console.log({
+        setFormContent({
             ...formContent,
             [name]: change
         })
@@ -37,16 +37,24 @@ const XMLForm = (props) => {
         )
 
         return (
-            <div className="xml_form__content">
-                <h3>{treeName}</h3>
-                {content}
-            </div>
+            <>
+                <div className="xml_form__content">
+                    <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
+                    {content}
+                </div>
+                <button className="xml_form__submit">
+                    <span>Submit</span>
+                </button>
+            </>
         )
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
 
+    }
     return (
-        <form className="xml_form__container">
+        <form className="xml_form__container" onSubmit={handleSubmit}>
             {formTreeComponents}
         </form>
     )

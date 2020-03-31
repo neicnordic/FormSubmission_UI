@@ -59,7 +59,7 @@ const TagChild = (props) => {
 
     return (
         <div className="xml_form__field">
-            <label className={labelClassName}>{props.child.name}</label>
+            <label className={labelClassName}>{props.child.name.replace(/[^a-zA-Z ]/g, " ")}</label>
             <MetaData
                 meta={props.child.meta}
                 handleChange={handleMetaChange}

@@ -32,7 +32,7 @@ const MetaData = props => {
         const enumerate = props.meta[attr].options;
         return (
             <div className={"xml_form__field"} key={key}>
-                <label className="xml_form__label">{attr}</label>
+                <label className="xml_form__label">{attr.replace(/[^a-zA-Z ]/g, " ").toLowerCase()}</label>
                 {enumerate ? (
                     <Select
                         name={attr}
