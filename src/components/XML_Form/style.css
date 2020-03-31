@@ -42,7 +42,7 @@
 .xml_form__container{
     padding: 1rem;
     border: 1px;
-    width: 600px;
+    min-width: 360px;
     height: 100%;
     overflow-y: inherit;
     margin-top: 5rem;

@@ -4,29 +4,22 @@ import { useState } from "react";
 
 
 const TagContent = props => {
-    const [contentCount, setContentCount] = useState(2);
+    const [value, setValue] = useState("")
 
-    const isMultiple = props.multiple;
-
-    console.log(isMultiple)
-    const handleController = command => {
-
+    const handleChange = (value) => {
+        setValue(value)
+        props.handleChange(value, props.name)
     }
 
-
     return (<>
-        {isMultiple ? (
-            <>
-                <div>
-                    <button>Add</button>
-                </div>
-                {new Array(contentCount).fill(1).map((_, key) => {
-                    return (
-                    <input key={key} className="xml_form__input" placeholder={props.placeholder} type="text"></input>)
-                })}
-            </>
-        )
-            : <input className="xml_form__input" placeholder={props.placeholder} type="text"></input>}
+        <input
+            className="xml_form__input"
+            value={value}
+            placeholder={props.placeholder}
+            onChange={e => handleChange(e.target.value)}
+            type="text"></input>
+        <span className="xml_form__option-bar"></span>
+
     </>)
 }
 

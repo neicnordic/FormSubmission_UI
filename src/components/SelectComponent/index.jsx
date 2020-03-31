@@ -10,7 +10,7 @@ const Select = props => {
                     <option value={element}>{element}</option>)
                 )}
             </select>
-            <span class="xml_form__option-bar"></span>
+            <span className="xml_form__option-bar"></span>
         </>
     )
 }

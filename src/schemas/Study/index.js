@@ -51,7 +51,8 @@ const tree = {
                         {
                             name: " STUDY_ABSTRACT",
                             content: true,
-                            placeholder: "STUDY ABSTRACT AS IT COULD APPEAR IN A PUBLICATION"
+                            placeholder: "STUDY ABSTRACT AS IT COULD APPEAR IN A PUBLICATION",
+                            value: ""
                         }
                     ]
                 },
@@ -64,12 +65,14 @@ const tree = {
                         {
                             name: 'TAG',
                             content: true,
-                            placeholder: "TAG name"
+                            placeholder: "TAG name",
+                            value: ""
                         },
                         {
                             name: 'VALUE',
                             content: true,
-                            placeholder: "TAG value"
+                            placeholder: "TAG value",
+                            value: ""
 
                         }
                     ]

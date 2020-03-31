@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux"
+import TagChild from "../TagChild"
 import "./style.css"
-import className from "classnames"
-import Select from '../SelectComponent'
-import TagContent from "../TagContent"
-import IconButton from "../IconButton"
-
 
 const XMLForm = (props) => {
     const [formContent, setFormContent] = useState(null)
+    const [formValues, setFormValues] = useState(null)
+
     useEffect(() => {
         if (props.schema) {
+            setFormValues(props.schema)
             setFormContent(parseTree(props.schema))
         }
     }, [props.schema])
 
+
     const parseTree = tree => {
         const treeName = tree.name
-        const content = tree.childs.map(child => parseChild(child))
+        const content = tree.childs.map(child => <TagChild child={child} />)
+
         return (
             <div className="xml_form__content">
                 <h3>{treeName}</h3>
@@ -26,42 +27,7 @@ const XMLForm = (props) => {
         )
     }
 
-    const parseChild = (child) => {
-        const labelClassName = className('xml_form__label',{'xml_form__labe--bold': !child.content})
-        return (
-            <div className="xml_form__field">
-                <label className={labelClassName}>{child.name}</label>
-                {parseMetaData(child.meta)}
-                {child.content && <TagContent placeholder={child.placeholder} />}
-                {child.multiple && <div className="xml_form__comand">
-                    <IconButton
-                        text=""
-                        handleClick={()=>{}}
-                        circle={true}
-                        icon={`plus`} />
-                </div>}
-                {child.childs && child.childs.map(child => parseChild(child))}
-            </div>
-        )
-    }
-    const parseMetaData = (meta) => {
-        if (meta) {
-            return Object.keys(meta).map(key => {
-                const enumerate = meta[key].options;
-                return (
-                    <>
-                        <label className="xml_form__label">{key}</label>
-                        {enumerate ? (
-                            <Select options={enumerate} name={key} />
-                        ) : (<input type="text"
-                            className="xml_form__input"
-                            placeholder={meta[key].placeholder} />)}
-                    </>
-                )
-            })
-        }
-        console.log(meta)
-    }
+
     return (
         <form className="xml_form__container">
             {formContent}

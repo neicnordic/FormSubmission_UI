@@ -1,29 +1,66 @@
-import React from "react"
+import React, { useState } from "react"
+import classNames from "classnames"
+import useScreenType from 'react-hooks-screen-type';
+
 import { connect } from 'react-redux';
 import { useHistory } from "react-router-dom";
 import { setSchemaType } from '../../actions/XML_validator'
-import classNames from "classnames"
 import "./style.css"
 
-const NavigationBar = props => {
-    const history = useHistory();
 
-    const formTabs = ["Study", "Sample", "Experiment", "Run", "Analysis", "DAC", "Policy", "Dataset"];
+
+const MobileTabs = props => {
+
+    const [displayMenu, setDisplayMenu] = useState(false);
+
+    // const linkContainersClassName = classNames('myLinks', { 'hidden': !displayMenu });
 
     return (
-        <nav className="nav">
-            <div className="nav__left">
-                <div className="nav__link">
-                    Forms:
-            </div>
-                {formTabs.map((tab, key) => {
+        <div>
+            <div className="nav__mobile"
+                style={{ display: displayMenu ? 'block' : 'none' }}>
+                {props.formTabs.map((tab, key) => {
                     let linkClassName = classNames('nav__link_element', { 'selected': tab === props.selected });
                     return (
                         <div key={key} className="nav__link">
                             <span className={linkClassName}
                                 onClick={() => {
-                                    if (history.location.pathname !== '/')
-                                        history.push("/")
+                                    if (props.history.location.pathname !== '/')
+                                        props.history.push("/")
+                                    props.setSchemaType(tab)
+                                }}>
+                                {tab}
+                            </span>
+                        </div>
+                    )
+                })}
+            </div>
+            <div className="nav__link"
+                onClick={() => { setDisplayMenu(!displayMenu) }}>
+                <span>
+                    <i class="fa fa-bars"></i>
+                </span>
+            </div>
+
+        </div>
+    )
+}
+
+const DesktopTabs = props => {
+    return (
+        <>
+            <div className="nav__left">
+                <div className="nav__link">
+                    Forms:
+                </div>
+                {props.formTabs.map((tab, key) => {
+                    let linkClassName = classNames('nav__link_element', { 'selected': tab === props.selected });
+                    return (
+                        <div key={key} className="nav__link">
+                            <span className={linkClassName}
+                                onClick={() => {
+                                    if (props.history.location.pathname !== '/')
+                                        props.history.push("/")
                                     props.setSchemaType(tab)
                                 }}>
                                 {tab}
@@ -34,10 +71,30 @@ const NavigationBar = props => {
             </div>
             <div className="nav__link nav__right">
                 <span className={'nav__link_element'}
-                    onClick={() => history.push("/submit")}>
+                    onClick={() => props.history.push("/submit")}>
                     {'Upload XML'}
                 </span>
             </div>
+        </>
+    )
+}
+const NavigationBar = props => {
+    const history = useHistory();
+
+    const formTabs = ["Study", "Sample", "Experiment", "Run", "Analysis", "DAC", "Policy", "Dataset"];
+    const screenType = useScreenType();
+
+    const isMobile = screenType === "xSmall";
+
+    return (
+        <nav className="nav">
+            {isMobile ?
+                <MobileTabs
+                    history={history}
+                    formTabs={formTabs} /> :
+                <DesktopTabs
+                    history={history}
+                    formTabs={formTabs} />}
         </nav>
     )
 }
