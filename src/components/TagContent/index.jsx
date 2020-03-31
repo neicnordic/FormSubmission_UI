@@ -21,11 +21,12 @@ const TagContent = props => {
                     <button>Add</button>
                 </div>
                 {new Array(contentCount).fill(1).map((_, key) => {
-                    return (<input key={key} className="xml_form__input" type="text"></input>)
+                    return (
+                    <input key={key} className="xml_form__input" placeholder={props.placeholder} type="text"></input>)
                 })}
             </>
         )
-            : <input className="xml_form__input" type="text"></input>}
+            : <input className="xml_form__input" placeholder={props.placeholder} type="text"></input>}
     </>)
 }
 

@@ -11,7 +11,6 @@ const Select = props => {
                 )}
             </select>
             <span class="xml_form__option-bar"></span>
-            <label class="xml_form__option-label">Select</label>
         </>
     )
 }

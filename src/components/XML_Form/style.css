@@ -43,5 +43,15 @@
     padding: 1rem;
     border: 1px;
     width: 600px;
-    overflow-y: scroll;
+    height: 100%;
+    overflow-y: inherit;
+    margin-top: 5rem;
+}
+
+.xml_form__comand{
+    display: flex;
+    flex-direction: row-reverse;
+}
+.xml_form__labe--bold{
+    font-weight: bolder;
 }

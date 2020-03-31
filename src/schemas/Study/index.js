@@ -20,7 +20,8 @@ const tree = {
                     childs: [
                         {
                             name: "STUDY_TITLE",
-                            content: true
+                            content: true,
+                            placeholder: "STUDY TITLE AS IT COULD APPEAR IN A PUBLICATION"
                         },
                         {
                             name: "STUDY_TYPE",
@@ -49,7 +50,8 @@ const tree = {
                         },
                         {
                             name: " STUDY_ABSTRACT",
-                            content: true
+                            content: true,
+                            placeholder: "STUDY ABSTRACT AS IT COULD APPEAR IN A PUBLICATION"
                         }
                     ]
                 },
@@ -61,11 +63,14 @@ const tree = {
                     childs: [
                         {
                             name: 'TAG',
-                            content: true
+                            content: true,
+                            placeholder: "TAG name"
                         },
                         {
                             name: 'VALUE',
-                            content: true
+                            content: true,
+                            placeholder: "TAG value"
+
                         }
                     ]
                 }

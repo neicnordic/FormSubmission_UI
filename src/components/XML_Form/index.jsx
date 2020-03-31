@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from "react-redux"
 import "./style.css"
+import className from "classnames"
 import Select from '../SelectComponent'
 import TagContent from "../TagContent"
+import IconButton from "../IconButton"
+
 
 const XMLForm = (props) => {
     const [formContent, setFormContent] = useState(null)
@@ -24,11 +27,19 @@ const XMLForm = (props) => {
     }
 
     const parseChild = (child) => {
+        const labelClassName = className('xml_form__label',{'xml_form__labe--bold': !child.content})
         return (
             <div className="xml_form__field">
-                <label className={"xml_form__label"}>{child.name}</label>
+                <label className={labelClassName}>{child.name}</label>
                 {parseMetaData(child.meta)}
-                {child.content && <TagContent />}
+                {child.content && <TagContent placeholder={child.placeholder} />}
+                {child.multiple && <div className="xml_form__comand">
+                    <IconButton
+                        text=""
+                        handleClick={()=>{}}
+                        circle={true}
+                        icon={`plus`} />
+                </div>}
                 {child.childs && child.childs.map(child => parseChild(child))}
             </div>
         )
