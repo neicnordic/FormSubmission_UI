@@ -44,14 +44,13 @@ const TagChild = (props) => {
         props.handleChange(newContent, props.child.name)
     };
 
-    const handleChildChange = (change, name) => {
-        const newChilds = _.unionBy([{ ...change, name }], tagContent, 'name')
-        const newContent = {
-            ...tagContent,
-            childs: newChilds
-        };
-        setTagContent(newContent);
-        props.handleChange(newContent, props.child.name)
+    const handleChildChange = (change, name, index = 0) => {
+        const newChilds = _.unionBy([{ ...change, name }], tagContent.childs[index], 'name')
+        let newTagContent = { ...tagContent };
+        newTagContent.childs[index] = newChilds;
+
+        setTagContent(newTagContent);
+        props.handleChange(newTagContent, props.child.name)
     };
 
     const handleContentChange = (value, name) => {
@@ -72,8 +71,7 @@ const TagChild = (props) => {
 
     const handleDelete = index => {
         let newContent = { ...tagContent };
-
-        newContent.childs.splice(index, 1)
+        newContent.childs.splice(index, 1)        
         setTagContent(newContent)
     }
 
@@ -114,11 +112,11 @@ const TagChild = (props) => {
                                 <IconButton
                                     size="small"
                                     icon="minus-circle"
-                                    disabled={tagContent.childs.length <= props.child.min }
+                                    disabled={tagContent.childs.length <= props.child.min}
                                     handleClick={() => { handleDelete(index) }} />
                             </div>
                             <DisplayChildTags
-                                handleChildChange={handleChildChange}
+                                handleChildChange={(value, name) => { handleChildChange(value, name, index) }}
                                 children={props.child.childs} />
                         </div>
 
