@@ -13,8 +13,6 @@ const MobileTabs = props => {
 
     const [displayMenu, setDisplayMenu] = useState(false);
 
-    // const linkContainersClassName = classNames('myLinks', { 'hidden': !displayMenu });
-
     return (
         <div>
             <div className="nav__mobile"
@@ -91,10 +89,12 @@ const NavigationBar = props => {
         <nav className="nav">
             {isMobile ?
                 <MobileTabs
+                    selected={props.selected}
                     history={history}
                     setSchemaType={props.setSchemaType}
                     formTabs={formTabs} /> :
                 <DesktopTabs
+                    selected={props.selected}
                     history={history}
                     setSchemaType={props.setSchemaType}
                     formTabs={formTabs} />}
