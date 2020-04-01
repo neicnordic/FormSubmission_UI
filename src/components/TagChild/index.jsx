@@ -93,6 +93,7 @@ const TagChild = (props) => {
             />
             {hasContent && (
                 <TagContent
+                    type={props.child.type}
                     name={props.child.name}
                     handleChange={handleContentChange}
                     placeholder={props.child.placeholder} />
