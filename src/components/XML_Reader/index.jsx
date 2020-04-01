@@ -37,10 +37,10 @@ const XMLSchemaReader = (props) => {
         <div className="container">
             <form className="xml__reader" onSubmit={handleSubmit} >
                 <div className="xml__reader__input_container">
-                    <label for="myfile">Select a file:</label>
+                    <label for="myfile">Upload an XML file to submit:</label>
                     <input type="file" id="myfile" name="xml_schema" onChange={e => setFile(e.target.files[0])}></input>
                 </div>
-                <input className="xml__reader__button--submit" type="submit"></input>
+                <input className="xml_form__submit" value="Upload" type="submit"></input>
             </form>
             <div className="xml__visualizer" style={{ height: props.schema ? '600px' : '0' }}>
                 {props.schema && (
@@ -49,7 +49,7 @@ const XMLSchemaReader = (props) => {
                     </textarea>
                 )}
             </div>
-            {props.schema && <input className="xml_form__submit" type="submit" />}
+            {props.schema && <button className="xml_form__submit" >Approve</button>}
         </div>
     )
 }
