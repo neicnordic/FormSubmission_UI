@@ -50,6 +50,7 @@ const XMLForm = (props) => {
 
     const handleSubmit = e => {
         e.preventDefault();
+        console.log(formContent)
     }
     
     return (
