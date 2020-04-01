@@ -54,7 +54,7 @@ const XMLForm = (props) => {
     }
     if (!formTreeComponents) {
         return (
-            <div className="xml_form__container">
+            <div className="welcome__container">
                 <h3>Welcome!</h3>
                 <span>Please select a form from the navigation bar to fill-in the desired metada</span>
                 <span>or upload an XML file with the desired metada to upload.</span>

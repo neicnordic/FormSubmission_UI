@@ -1,3 +1,11 @@
+.welcome__container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  margin-top: 9rem;
+}
+
 .xml_form__content{
     padding: 20px;
     margin: 0.5rem 0 1rem 0;
