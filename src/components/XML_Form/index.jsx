@@ -52,12 +52,21 @@ const XMLForm = (props) => {
         e.preventDefault();
         console.log(formContent)
     }
-    
-    return (
-        <form className="xml_form__container" onSubmit={handleSubmit}>
-            {formTreeComponents}
-        </form>
-    )
+    if (!formTreeComponents) {
+        return (
+            <div className="xml_form__container">
+                <h3>Welcome!</h3>
+                <span>Please select a form from the navigation bar to fill-in the desired metada</span>
+                <span>or upload an XML file with the desired metada to upload.</span>
+            </div>
+        )
+    } else {
+        return (
+            <form className="xml_form__container" onSubmit={handleSubmit}>
+                {formTreeComponents}
+            </form>
+        )
+    }
 }
 
 const mapStateToProps = (state, ownProps) => ({

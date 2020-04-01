@@ -114,7 +114,7 @@ const TagChild = (props) => {
                                 <IconButton
                                     size="small"
                                     icon="minus-circle"
-                                    disabled={tagContent.childs.length === 1}
+                                    disabled={tagContent.childs.length <= props.child.min }
                                     handleClick={() => { handleDelete(index) }} />
                             </div>
                             <DisplayChildTags
