@@ -7,10 +7,12 @@ const tree = {
             content: false,
             meta: {
                 alias: {
-                    placeholder: "Unique name for submission"
+                    placeholder: "Unique name for submission",
+                    value:""
                 },
                 center_name: {
-                    placeholder: "Center name abbreviation"
+                    placeholder: "Center name abbreviation",
+                    value:""
                 }
             },
             childs: [
@@ -21,7 +23,8 @@ const tree = {
                         {
                             name: "STUDY_TITLE",
                             content: true,
-                            placeholder: "STUDY TITLE AS IT COULD APPEAR IN A PUBLICATION"
+                            placeholder: "STUDY TITLE AS IT COULD APPEAR IN A PUBLICATION",
+                            value:""
                         },
                         {
                             name: "STUDY_TYPE",
@@ -29,6 +32,7 @@ const tree = {
                             meta: {
                                 existing_study_type: {
                                     placeholder: "Existing study type",
+                                    value:"",
                                     options: [
                                         "Whole Genome Sequencing",
                                         "Metagenomics",

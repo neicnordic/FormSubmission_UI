@@ -1,35 +1,25 @@
 import React from "react"
 import TagContent from "../TagContent";
 import Select from "../SelectComponent";
-import { useState } from "react";
-import { useEffect } from "react";
 
 const MetaData = props => {
 
-    const [metaValues, setMetaValues] = useState({});
-
-    useEffect(() => {
-        if (props.meta) {
-            const attributes = Object.keys(props.meta);
-
-            let values = {};
-            attributes.forEach(attr => values[attr] = "");
-            setMetaValues(values)
-        }
-    }, [props.meta]);
-
+    const metadata = props.meta || {};
 
     const handleChange = (value, name) => {
-        const newValues = { ...metaValues, [name]: value }
-        setMetaValues(newValues)
-        props.handleChange(newValues);
+        props.handleChange({ 
+            ...metadata, 
+            [name]: {
+                ...metadata[name],
+                value
+        }});
     };
 
 
-    const attributes = Object.keys(metaValues);
+    const attributes = Object.keys(metadata);
 
     return attributes.map((attr, key) => {
-        const enumerate = props.meta[attr].options;
+        const enumerate = metadata[attr].options;
         return (
             <div className={"xml_form__field"} key={key}>
                 <label className="xml_form__label">{attr.replace(/[^a-zA-Z ]/g, " ").toLowerCase()}</label>
@@ -40,8 +30,9 @@ const MetaData = props => {
                         options={enumerate}/>
                 ) : <TagContent
                         name={attr}
+                        value={metadata[attr].value}
                         handleChange={handleChange}
-                        placeholder={props.meta[attr].placeholder} />}
+                        placeholder={metadata[attr].placeholder} />}
             </div>
         )
     })

@@ -42,17 +42,16 @@ const XMLForm = (props) => {
                     <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
                     {content}
                 </div>
-                <button className="xml_form__submit">
-                    <span>Submit</span>
-                </button>
+                <input className="xml_form__submit" type="submit">
+                </input>
             </>
         )
     }
 
     const handleSubmit = e => {
         e.preventDefault();
-
     }
+    
     return (
         <form className="xml_form__container" onSubmit={handleSubmit}>
             {formTreeComponents}
