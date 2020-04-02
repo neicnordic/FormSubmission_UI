@@ -37,7 +37,7 @@ const XMLSchemaReader = (props) => {
         <div className="container">
             {!props.schema && <form className="xml__reader" onSubmit={handleSubmit} >
                 <div className="xml__reader__input_container">
-                    <label for="myfile">Upload an XML file to submit:</label>
+                    <label htmlFor="myfile">Upload an XML file to submit:</label>
                     <input type="file" id="myfile" name="xml_schema" onChange={e => setFile(e.target.files[0])}></input>
                 </div>
                 <input className="xml_form__submit" value="Upload" type="submit"></input>

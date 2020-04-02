@@ -20,22 +20,3 @@
 .small{
     font-size:13px!important;
 }
-
-.icon_button--circle {
-    -webkit-box-shadow: 0 6px 10px 0 rgba(0,0,0,0.3);
-    box-shadow: 0 6px 10px 0 rgba(0,0,0,0.3);
-    border-radius: 50%;
-    padding: 7px 10px;
-    transition: 0.2s;
-    text-align: center;
-}
-
-.icon_button--circle:active {
-    transform: scale(0.90);
-    box-shadow: 0 2px 15px 0 rgba(0,0,0,0.3);
-}
-.icon_button--circle:hover{
-    cursor: pointer;
-    background-color: lighten(#ffffff, 10%);
-    box-shadow: 0 8px 15px 0 rgba(0,0,0,0.3);
-}

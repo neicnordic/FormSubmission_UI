@@ -12,6 +12,8 @@ import "./style.css"
 const MobileTabs = props => {
 
     const [displayMenu, setDisplayMenu] = useState(false);
+    const isUpload = props.history.location.pathname === "/submit";
+    const uploadClassNamelink = classNames('nav__link_element', { 'selected': isUpload });
 
     return (
         <div>
@@ -33,11 +35,17 @@ const MobileTabs = props => {
                         </div>
                     )
                 })}
+                <div className="nav__link">
+                    <span className={uploadClassNamelink}
+                        onClick={() => props.history.push("/submit")}>
+                        {'Upload XML'}
+                    </span>
+                </div>
             </div>
             <div className="nav__link"
                 onClick={() => { setDisplayMenu(!displayMenu) }}>
                 <span>
-                    <i class="fa fa-bars"></i>
+                    <i className="fa fa-bars"></i>
                 </span>
             </div>
 
@@ -46,6 +54,11 @@ const MobileTabs = props => {
 }
 
 const DesktopTabs = props => {
+
+    const isUpload = props.history.location.pathname === "/submit";
+    const uploadClassNamelink = classNames('nav__link_element', { 'selected': isUpload });
+
+
     return (
         <>
             <div className="nav__left">
@@ -69,7 +82,7 @@ const DesktopTabs = props => {
                 })}
             </div>
             <div className="nav__link nav__right">
-                <span className={'nav__link_element'}
+                <span className={uploadClassNamelink}
                     onClick={() => props.history.push("/submit")}>
                     {'Upload XML'}
                 </span>

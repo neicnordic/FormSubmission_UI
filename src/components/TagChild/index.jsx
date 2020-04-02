@@ -7,12 +7,11 @@ import { useEffect } from "react"
 import { useState } from "react"
 import _ from "lodash"
 
-
 const DisplayChildTags = ({ children, handleChildChange }) => {
     return (
         children.map((child, key) =>
             <TagChild
-                key={child.name}
+                key={key}
                 handleChange={handleChildChange}
                 child={child} />
         )
@@ -20,20 +19,28 @@ const DisplayChildTags = ({ children, handleChildChange }) => {
 };
 
 const TagChild = (props) => {
-    const [tagContent, setTagContent] = useState({});
+    const [tagContent, setTagContent] = useState(null)
+    const [childsCopy, setChildsCopy] = useState(null)
+
+    const isMatrix = (currentValue) => Array.isArray(currentValue);
 
     useEffect(() => {
-        let content = {
-            meta: {},
-            content: null
+        if (props.child) {
+            const content = { ...props.child };
+            if(childsCopy===null){
+                setChildsCopy(content.childs)
+            }
+            if (props.child.childs) {
+                if (!props.child.childs.every(isMatrix)){
+                    content.childs = [content.childs];
+                }
+                else
+                    content.childs = props.child.childs
+            }
+            setTagContent(content);
         }
-        if (props.child.childs)
-            content.childs = props.child.childs.map(child => ({ name: child.name }))
-        if (props.child.multiple) {
-            content.childs = [content.childs]
-        }
-        setTagContent(content)
-    }, [props.child])
+    }, [props.child]);
+
 
     const handleMetaChange = (change) => {
         const newContent = {
@@ -45,34 +52,54 @@ const TagChild = (props) => {
     };
 
     const handleChildChange = (change, name, index = 0) => {
-        const newChilds = _.unionBy([{ ...change, name }], tagContent.childs[index], 'name')
-        let newTagContent = { ...tagContent };
-        newTagContent.childs[index] = newChilds;
+        const changedChild = tagContent.childs[index].map(child => {
+            if (child.name === name)
+                return change
+            else
+                return child
+        });
 
-        setTagContent(newTagContent);
-        props.handleChange(newTagContent, props.child.name)
-    };
+        const newChilds = tagContent.childs
+        newChilds[index] = changedChild
 
-    const handleContentChange = (value, name) => {
         const newContent = {
             ...tagContent,
-            content: value
+            childs: newChilds
+        }
+        setTagContent(newContent)
+
+        props.handleChange(newContent, name, 0)
+    };
+
+    const handleContentChange = (value) => {
+        const newContent = {
+            ...tagContent,
+            value: value
         };
 
         setTagContent(newContent);
-        props.handleChange(newContent, props.child.name)
+        props.handleChange(newContent, tagContent.name)
     };
 
     const handleAddChild = () => {
         let newTagContent = { ...tagContent };
-        newTagContent.childs.push(props.child.childs.map(child => ({ name: child.name })))
+        newTagContent.childs.push(childsCopy)
+
         setTagContent(newTagContent)
+        props.handleChange(newTagContent, props.name)
+
     }
 
-    const handleDelete = index => {
-        let newContent = { ...tagContent };
-        newContent.childs.splice(index, 1)        
+    const handleDelete = (index = 0) => {
+        const newContent = {
+            ...tagContent,
+            childs: _.remove(tagContent.childs, (n, i) => {
+                return i !== index
+            })
+        }
         setTagContent(newContent)
+        props.handleChange(newContent, tagContent.name)
+
     }
 
 
@@ -80,22 +107,16 @@ const TagChild = (props) => {
     const hasChildren = props.child.childs;
     const isMultiple = props.child.multiple;
 
-    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !props.child.content });
-
+    if (tagContent === null) {
+        return (<></>)
+    }
+    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !tagContent.content });
     return (
         <div className="xml_form__field">
-            <label className={labelClassName}>{props.child.name.replace(/[^a-zA-Z ]/g, " ")}</label>
+            <label className={labelClassName}>{tagContent.name.replace(/[^a-zA-Z ]/g, " ")}</label>
             <MetaData
-                meta={props.child.meta}
-                handleChange={handleMetaChange}
-            />
-            {hasContent && (
-                <TagContent
-                    type={props.child.type}
-                    name={props.child.name}
-                    handleChange={handleContentChange}
-                    placeholder={props.child.placeholder} />
-            )}
+                meta={tagContent.meta}
+                handleChange={handleMetaChange} />
             {isMultiple && Array.isArray(tagContent.childs) ? (
                 <>
                     <div className="xml_form__comand">
@@ -106,27 +127,39 @@ const TagChild = (props) => {
                             handleClick={handleAddChild}
                         />
                     </div>
-                    {tagContent.childs.map((_, index) =>
-                        <div className="xml_form__multiple_content">
-                            <div style={{ float: "right" }}>
-                                <IconButton
-                                    size="small"
-                                    icon="minus-circle"
-                                    disabled={tagContent.childs.length <= props.child.min}
-                                    handleClick={() => { handleDelete(index) }} />
+                    {tagContent.childs.map((content, index) => {
+                        return (
+                            <div key={index} className="xml_form__multiple_content">
+                                <div style={{ float: "right" }}>
+                                    <IconButton
+                                        size="small"
+                                        icon="minus-circle"
+                                        disabled={tagContent.childs.length <= props.child.min}
+                                        handleClick={() => { handleDelete(index) }} />
+                                </div>
+                                <DisplayChildTags
+                                    handleChildChange={(value, name) => { handleChildChange(value, name, index) }}
+                                    children={content} />
                             </div>
-                            <DisplayChildTags
-                                handleChildChange={(value, name) => { handleChildChange(value, name, index) }}
-                                children={props.child.childs} />
-                        </div>
-
+                        )
+                    }
                     )}
                 </>
-            ) : hasChildren && <DisplayChildTags
-                handleChildChange={handleChildChange}
-                children={props.child.childs} />
-            }
-
+            ) : (
+                    <>
+                        {hasContent && (
+                            <TagContent
+                                value={tagContent.value}
+                                type={tagContent.type}
+                                name={tagContent.name}
+                                handleChange={handleContentChange}
+                                placeholder={tagContent.placeholder} />
+                        )}
+                        {hasChildren && <DisplayChildTags
+                            handleChildChange={handleChildChange}
+                            children={tagContent.childs[0]} />}
+                    </>
+                )}
         </div>
     )
 }

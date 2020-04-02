@@ -5,35 +5,36 @@ import "./style.css"
 
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
-    const [formContent, setFormContent] = useState({})
 
     useEffect(() => {
         if (props.schema) {
             let content = {}
 
             props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
-            setFormContent(content);
 
             setFormTreeComponents(parseTree(props.schema));
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.schema])
 
 
-    const handleChildChange = (change, name) => {
-        setFormContent({
-            ...formContent,
-            [name]: change
-        })
+    const handleChildChange = (change, name,index) => {
+        // setFormContent({
+        //     ...formContent,
+        //     [name]: change
+        // })
     };
 
 
     const parseTree = tree => {
         const treeName = tree.name
-        const content = tree.childs.map(child =>
+        const content = tree.childs.map(child =>{
+            console.log(child,'tree')
+            return (
             <TagChild
                 handleChange={handleChildChange}
                 key={child.name}
-                child={child} />
+                child={child} />)}
         )
 
         return (
@@ -51,6 +52,8 @@ const XMLForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
     }
+
+    
     if (!formTreeComponents) {
         return (
             <div className="welcome__container">

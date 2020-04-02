@@ -53,7 +53,7 @@ const tree = {
                             }
                         },
                         {
-                            name: " STUDY_ABSTRACT",
+                            name: "STUDY_ABSTRACT",
                             content: true,
                             placeholder: "STUDY ABSTRACT AS IT COULD APPEAR IN A PUBLICATION",
                             value: ""
@@ -79,7 +79,8 @@ const tree = {
                                             name: "IS_PRIMARY",
                                             placeholder: "Whether this study object is designated as the primary source of the study or project information.",
                                             content: true,
-                                            type: "boolean"
+                                            type: "boolean",
+                                            value: false
                                         }
                                     ]
                                 },

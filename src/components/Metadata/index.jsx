@@ -15,7 +15,6 @@ const MetaData = props => {
         }});
     };
 
-
     const attributes = Object.keys(metadata);
 
     return attributes.map((attr, key) => {
