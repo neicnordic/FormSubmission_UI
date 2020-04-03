@@ -27,11 +27,11 @@ const TagChild = (props) => {
     useEffect(() => {
         if (props.child) {
             const content = { ...props.child };
-            if(childsCopy===null){
+            if (childsCopy === null) {
                 setChildsCopy(content.childs)
             }
             if (props.child.childs) {
-                if (!props.child.childs.every(isMatrix)){
+                if (!props.child.childs.every(isMatrix)) {
                     content.childs = [content.childs];
                 }
                 else
@@ -110,10 +110,13 @@ const TagChild = (props) => {
     if (tagContent === null) {
         return (<></>)
     }
-    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !tagContent.content });
+    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !tagContent.content || tagContent.placeholder });
     return (
         <div className="xml_form__field">
             <label className={labelClassName}>{tagContent.name.replace(/[^a-zA-Z ]/g, " ")}</label>
+            {(tagContent.placeholder && !hasContent) &&
+                <label className={"xml_form__label"}>{tagContent.placeholder.toLowerCase()}</label>
+            }
             <MetaData
                 meta={tagContent.meta}
                 handleChange={handleMetaChange} />

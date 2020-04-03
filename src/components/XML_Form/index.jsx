@@ -29,7 +29,6 @@ const XMLForm = (props) => {
     const parseTree = tree => {
         const treeName = tree.name
         const content = tree.childs.map(child =>{
-            console.log(child,'tree')
             return (
             <TagChild
                 handleChange={handleChildChange}
