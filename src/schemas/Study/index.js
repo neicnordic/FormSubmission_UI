@@ -1,6 +1,7 @@
 const tree = {
     name: "STUDY_SET",
     conent: false,
+    required: true,
     childs: [
         {
             name: "STUDY",
@@ -19,16 +20,19 @@ const tree = {
                 {
                     name: "DESCRIPTOR",
                     content: false,
+                    required: true,
                     childs: [
                         {
                             name: "STUDY_TITLE",
                             content: true,
+                            required: true,
                             placeholder: "STUDY TITLE AS IT COULD APPEAR IN A PUBLICATION",
                             value: ""
                         },
                         {
                             name: "STUDY_TYPE",
                             content: false,
+                            required: true,
                             meta: {
                                 existing_study_type: {
                                     placeholder: "Existing study type",
@@ -62,12 +66,13 @@ const tree = {
                             name: "RELATED_STUDIES",
                             content: false,
                             required: false,
-                            multiple: true,
-                            min: 1,
                             childs: [
                                 {
-                                    name: "RELEATED STUDY",
+                                    name: "RELEATED_STUDY",
                                     content: false,
+                                    required: true,
+                                    multiple: true,
+                                    min: 1,
                                     childs: [
                                         {
                                             name: "RELATED_LINK",
@@ -97,21 +102,27 @@ const tree = {
                 {
                     name: "STUDY_ATTRIBUTES",
                     content: false,
-                    multiple: true,
-                    min: 1,
                     childs: [
                         {
-                            name: 'TAG',
-                            content: true,
-                            placeholder: "TAG name",
-                            value: ""
-                        },
-                        {
-                            name: 'VALUE',
-                            content: true,
-                            placeholder: "TAG value",
-                            value: ""
-
+                            name:"STUDY_ATTRIBUTE",
+                            content:false,
+                            multiple:true,
+                            min:1,
+                            childs:[
+                                {
+                                    name: 'TAG',
+                                    content: true,
+                                    placeholder: "TAG name",
+                                    value: ""
+                                },
+                                {
+                                    name: 'VALUE',
+                                    content: true,
+                                    placeholder: "TAG value",
+                                    value: ""
+        
+                                }
+                            ]
                         }
                     ]
                 },
@@ -119,11 +130,13 @@ const tree = {
                     name: "STUDY_LINKS",
                     content: false,
                     multiple: true,
-                    min: 1,
+                    min: 0,
+                    max:1,
                     childs: [
                         {
                             name: "STUDY_LINK",
                             content: true,
+                            required:true,
                             placeholder: "",
                             value: ""
                         }]

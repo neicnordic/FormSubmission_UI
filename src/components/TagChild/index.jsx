@@ -21,6 +21,7 @@ const DisplayChildTags = ({ children, handleChildChange }) => {
 const TagChild = (props) => {
     const [tagContent, setTagContent] = useState(null)
     const [childsCopy, setChildsCopy] = useState(null)
+    const [hasChanged, setHasChanged] = useState(false)
 
     const isMatrix = (currentValue) => Array.isArray(currentValue);
 
@@ -47,6 +48,8 @@ const TagChild = (props) => {
             ...tagContent,
             meta: change
         }
+
+        setHasChanged(true)
         setTagContent(newContent)
         props.handleChange(newContent, props.child.name)
     };
@@ -66,9 +69,10 @@ const TagChild = (props) => {
             ...tagContent,
             childs: newChilds
         }
-        setTagContent(newContent)
 
-        props.handleChange(newContent, name, 0)
+        setHasChanged(true)
+        setTagContent(newContent)
+        props.handleChange(newContent, tagContent.name, 0)
     };
 
     const handleContentChange = (value) => {
@@ -77,6 +81,7 @@ const TagChild = (props) => {
             value: value
         };
 
+        setHasChanged(true)
         setTagContent(newContent);
         props.handleChange(newContent, tagContent.name)
     };
@@ -106,14 +111,20 @@ const TagChild = (props) => {
     const hasContent = props.child.content;
     const hasChildren = props.child.childs;
     const isMultiple = props.child.multiple;
+    const isRequired = props.child.required;
+    const isError = props.child.error;
 
     if (tagContent === null) {
         return (<></>)
     }
-    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !tagContent.content || tagContent.placeholder });
+    const labelClassName = className('xml_form__label', {
+        'xml_form__labe--bold': !tagContent.content || tagContent.placeholder,
+        'error': isError && !hasChanged
+    });
+
     return (
         <div className="xml_form__field">
-            <label className={labelClassName}>{tagContent.name.replace(/[^a-zA-Z ]/g, " ")}</label>
+            <label className={labelClassName}>{isRequired && "* "} {tagContent.name.replace(/[^a-zA-Z ]/g, " ")}</label>
             {(tagContent.placeholder && !hasContent) &&
                 <label className={"xml_form__label"}>{tagContent.placeholder.toLowerCase()}</label>
             }
@@ -152,6 +163,7 @@ const TagChild = (props) => {
                     <>
                         {hasContent && (
                             <TagContent
+                                error={tagContent.error}
                                 value={tagContent.value}
                                 type={tagContent.type}
                                 name={tagContent.name}

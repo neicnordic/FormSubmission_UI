@@ -9,6 +9,7 @@
     "classnames": "^2.2.6",
     "jsonix": "^3.0.0",
     "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hooks-screen-type": "^1.0.0",

@@ -2,6 +2,7 @@ import React from 'react';
 import XML_FORM from './components/XML_Form'
 import XML_READER from './components/XML_Reader'
 import NavigationBar from './components/NavigationBar'
+import LoadingComponent from "./components/LoadingComponent"
 
 import { Provider } from 'react-redux'
 import store from './store'
@@ -20,7 +21,7 @@ function App() {
     <Provider store={store}>
       <Router>
         <NavigationBar />
-
+        <LoadingComponent />
         <div className="container">
           <Switch>
             <Route exact path="/">

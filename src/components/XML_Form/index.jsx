@@ -1,40 +1,111 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { connect } from "react-redux"
 import TagChild from "../TagChild"
+import {
+    setLoadingState
+} from "../../actions/app.actions"
+
 import "./style.css"
 
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
+    const [treeContent, setTreeContent] = useState(null)
+
+    const formEl = useRef(null);
 
     useEffect(() => {
         if (props.schema) {
-            let content = {}
-
-            props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
-
             setFormTreeComponents(parseTree(props.schema));
         }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [props.schema])
 
 
-    const handleChildChange = (change, name,index) => {
-        // setFormContent({
-        //     ...formContent,
-        //     [name]: change
-        // })
+    const handleChildChange = (change, name, index) => {
+        setTreeContent(change)
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        props.setLoadingState(true)
+        const validationTree = validateChild({ ...treeContent, required: true })
+        if (validationTree.valid) {
+            // var xmlDoc = document.implementation.createDocument(null, treeContent.name);
+            // console.log(treeContent.childs[0].map(child=> createXMLTag(xmlDoc, child)))
+        } else {
+            let newSchema = {
+                ...props.schema,
+                childs : [setError(treeContent, validationTree)]
+            }
+            setFormTreeComponents(parseTree(newSchema));
+        }
+        setTimeout(() => { props.setLoadingState(false) }, 500)
+
+    }
+
+    const setError = (child, errorchild) => {
+        if (errorchild.valid) {
+            return child
+        } else {
+            let newChild = { ...child };
+
+            if (child.meta) {
+                Object.keys(child.meta).forEach(key => {
+                    if (child.meta[key].value === "") {
+                        newChild.meta[key].error = true
+                    }
+                })
+            }
+
+            if (child.content && child.content !== "") {
+                newChild.error = true
+            }
+            if (!errorchild.childs || errorchild.childs.length === 0) {
+                return newChild
+            } else {
+                return {
+                    ...newChild,
+                    childs: child.childs[0].map((c, i) => setError(c, errorchild.childs[i]))
+                }
+            }
+        }
+    }
+
+
+    const createXMLTag = (documet, child) => {
+
+        // CREATE THE XML TAG FOR THE CHILD
+        var xmlTag = documet.createElement(child.name);
+
+        //IF IT HAS MORE CHILDS, WE RECURSIVELY CREATE MORE TAGS
+        if (child.childs && child.childs.length > 0) {
+            if (child.meta) {
+                Object.keys(child.meta).forEach(key => {
+                    xmlTag.setAttribute(key, child.meta[key].value);
+                })
+            }
+
+            const childs = child.childs.map(child => createXMLTag(documet, child))
+            childs.forEach(element => {
+                xmlTag.appendChild(element)
+            });
+            return xmlTag
+        } else {
+
+            xmlTag.appendChild(documet.createTextNode(child.value))
+            return xmlTag
+        }
+    }
 
     const parseTree = tree => {
         const treeName = tree.name
-        const content = tree.childs.map(child =>{
+        const content = tree.childs.map(child => {
             return (
-            <TagChild
-                handleChange={handleChildChange}
-                key={child.name}
-                child={child} />)}
-        )
+                <TagChild
+                    handleChange={handleChildChange}
+                    key={child.name}
+                    child={child} />)
+        })
 
         return (
             <>
@@ -48,11 +119,44 @@ const XMLForm = (props) => {
         )
     }
 
-    const handleSubmit = e => {
-        e.preventDefault();
+
+    const validateChild = (child) => {
+        let errors = {
+            name: child.name,
+            meta: {},
+            valid: true,
+            childs: []
+        }
+
+        if (child.required) {
+            // VALIDATE META DATA
+            if (child.meta) {
+                Object.keys(child.meta).forEach(key => {
+                    errors = {
+                        ...errors,
+                        meta: {
+                            ...errors.meta,
+                            [key]: child.required ? child.meta[key].value !== "" : true
+                        }
+                    }
+                })
+            }
+
+            let isMetaValid = child.meta ? Object.keys(errors.meta).every(key => errors.meta[key] === true) : true;
+            let isContentValid = child.content ? child.value !== "" : true;
+            let isChildValid = (child.childs && child.childs.length > 0) ? false : true;
+
+            if (child.childs && child.childs.length > 0) {
+                errors = { ...errors, childs: child.childs[0].map(child => validateChild(child)) }
+                isChildValid = errors.childs.every(v => v.valid === true);
+            }
+            errors.valid = isMetaValid && isContentValid && isChildValid
+
+        }
+
+        return errors
     }
 
-    
     if (!formTreeComponents) {
         return (
             <div className="welcome__container">
@@ -63,7 +167,7 @@ const XMLForm = (props) => {
         )
     } else {
         return (
-            <form className="xml_form__container" onSubmit={handleSubmit}>
+            <form className="xml_form__container" ref={formEl} onSubmit={handleSubmit}>
                 {formTreeComponents}
             </form>
         )
@@ -77,7 +181,7 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-
+        setLoadingState: (state) => dispatch(setLoadingState(state))
     }
 }
 

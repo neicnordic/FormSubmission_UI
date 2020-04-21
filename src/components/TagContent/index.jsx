@@ -1,8 +1,14 @@
-import React from "react"
-
+import React , {useState} from "react"
+import classNames from "classnames"
 
 const TagContent = props => {
     const isBoolean = props.type === "boolean";
+    const isError = props.error === true;
+
+    const [hasChanged,setHaschanged] = useState(false);
+
+    const inputClassname = classNames('xml_form__input', { 'error': isError && !hasChanged });
+    const optionBarClassname = classNames('xml_form__option-bar ', { 'error': isError && !hasChanged });
 
 
     const handleChange = (event_value) => {
@@ -12,13 +18,14 @@ const TagContent = props => {
         } else {
             props.handleChange(event_value, props.name)
         }
+        setHaschanged(true)
     }
 
     if (props.type === "boolean") {
         return (
             <div style={{ flexDirection: "row" }}>
                 <input
-                    className="xml_form__input"
+                    className={inputClassname}
                     value={props.value}
                     placeholder={props.placeholder}
                     onChange={e => handleChange(e.target.value)}
@@ -29,12 +36,12 @@ const TagContent = props => {
     } else {
         return (<>
             <input
-                className="xml_form__input"
+                className={inputClassname}
                 value={props.value}
                 placeholder={props.placeholder}
                 onChange={e => handleChange(e.target.value)}
                 type="text"></input>
-            <span className="xml_form__option-bar"></span>
+            <span className={optionBarClassname}></span>
 
         </>)
     }

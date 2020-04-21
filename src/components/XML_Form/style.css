@@ -75,6 +75,7 @@
 
 .xml_form__submit{
     position: relative;
+    cursor: pointer;
 
     display: block;
     padding: 8px;
@@ -93,6 +94,15 @@
     transition: background-color .3s;
 }
 
+.error{
+  color: red!important;
+  border-color: red!important;
+}
+
+.error  input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: red!important;
+  opacity: 1; /* Firefox */
+}
 
 .xml_form__submit:hover, .xml_form__submit:focus {
   background-color: #192931;

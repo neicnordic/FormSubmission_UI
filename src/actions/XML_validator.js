@@ -1,6 +1,11 @@
 import StudyXML from "../schemas/Study"
 import SampleXML from "../schemas/Sample"
 import PolicyXML from "../schemas/Policy"
+import AnalysisXML from "../schemas/Analysis"
+import RunXML from "../schemas/Run"
+import DACXML from "../schemas/DAC"
+import DataSetXML from "../schemas/Dataset"
+
 import ExperimentXML from "../schemas/Experiment"
 
 export const XML_SCHEMA_ACTIONS = {
@@ -27,13 +32,21 @@ export const submitXMLSchema = schema => ({
 const getXMLDatafromSchemaType = (type) => {
     switch (type) {
         case "Study":
-            return StudyXML
+            return StudyXML;
         case "Sample":
-            return SampleXML
+            return SampleXML;
         case "Policy":
-            return PolicyXML
+            return PolicyXML;
         case "Experiment":
-            return ExperimentXML
+            return ExperimentXML;
+        case "Run":
+            return RunXML;
+        case "Analysis":
+            return AnalysisXML;
+        case "DAC":
+            return DACXML;
+        case "Dataset":
+            return DataSetXML;
         default:
             return null;
     }
