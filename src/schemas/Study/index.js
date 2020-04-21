@@ -85,7 +85,7 @@ const tree = {
                                             placeholder: "Whether this study object is designated as the primary source of the study or project information.",
                                             content: true,
                                             type: "boolean",
-                                            value: false
+                                            value: null
                                         }
                                     ]
                                 },

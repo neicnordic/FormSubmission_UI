@@ -16,6 +16,7 @@ const XMLForm = (props) => {
 
     useEffect(() => {
         if (props.schema) {
+            setTreeContent(null)
             setFormTreeComponents(parseTree(props.schema));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,15 +32,21 @@ const XMLForm = (props) => {
         props.setLoadingState(true)
         const validationTree = validateChild({ ...treeContent, required: true })
         if (validationTree.valid) {
-            // var xmlDoc = document.implementation.createDocument(null, treeContent.name);
-            // console.log(treeContent.childs[0].map(child=> createXMLTag(xmlDoc, child)))
+            var xmlDoc = document.implementation.createDocument(null, props.schema.name);
+            let element = xmlDoc.createElement(treeContent.name)
+            console.log(treeContent)
+            let childTags = treeContent.childs[0].map(child => createXMLTag(xmlDoc, child))
+            childTags.filter(el=>el !== null ).forEach(tag => element.appendChild(tag))
+            xmlDoc.documentElement.appendChild(element)
+
+            console.log(xmlDoc)
         } else {
             let newSchema = {
                 ...props.schema,
-                childs : [setError(treeContent, validationTree)]
+                childs: [setError(treeContent, validationTree)]
             }
             setFormTreeComponents(parseTree(newSchema));
-            props.setPopout({display:true, content:"Metadata couldn't be creaded. Check missing fields."})
+            props.setPopout({ display: true, content: "Metadata couldn't be creaded. Check missing fields." })
         }
         setTimeout(() => { props.setLoadingState(false) }, 500)
 
@@ -78,25 +85,41 @@ const XMLForm = (props) => {
 
         // CREATE THE XML TAG FOR THE CHILD
         var xmlTag = documet.createElement(child.name);
-
+        let tes = false
+        // IF CHILD HAS META DATA ADD IT AS AN ATTRIBUTE
+        if (child.meta) {
+            Object.keys(child.meta).forEach(key => {
+                xmlTag.setAttribute(key, child.meta[key].value);
+            })
+            tes = true
+        }
         //IF IT HAS MORE CHILDS, WE RECURSIVELY CREATE MORE TAGS
         if (child.childs && child.childs.length > 0) {
-            if (child.meta) {
-                Object.keys(child.meta).forEach(key => {
-                    xmlTag.setAttribute(key, child.meta[key].value);
-                })
+            let childs = child.childs
+
+            if (Array.isArray(childs[0])) {
+                console.log(childs, 'lets switch')
+                childs = childs[0]
             }
 
-            const childs = child.childs.map(child => createXMLTag(documet, child))
-            childs.forEach(element => {
-                xmlTag.appendChild(element)
+            const tagChilds = childs.map(child => createXMLTag(documet, child));
+            tagChilds.forEach(element => {
+                if (element !== null) {
+                    xmlTag.appendChild(element)
+                    tes = true
+                }
             });
-            return xmlTag
-        } else {
-
-            xmlTag.appendChild(documet.createTextNode(child.value))
-            return xmlTag
         }
+        if (child.content && child.value !== "" && child.value !== null) {
+            let text = document.createTextNode(child.value)
+            xmlTag.appendChild(text)
+            tes = true
+
+        }
+        if (tes)
+            return xmlTag
+        else
+            return null
     }
 
     const parseTree = tree => {
@@ -184,7 +207,7 @@ const mapStateToProps = (state, ownProps) => ({
 const mapDispatchToProps = dispatch => {
     return {
         setLoadingState: (state) => dispatch(setLoadingState(state)),
-        setPopout: (popout)=> dispatch(setPopout(popout))
+        setPopout: (popout) => dispatch(setPopout(popout))
     }
 }
 
