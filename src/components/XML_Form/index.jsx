@@ -2,7 +2,8 @@ import React, { useEffect, useState, useRef } from 'react'
 import { connect } from "react-redux"
 import TagChild from "../TagChild"
 import {
-    setLoadingState
+    setLoadingState,
+    setPopout
 } from "../../actions/app.actions"
 
 import "./style.css"
@@ -38,6 +39,7 @@ const XMLForm = (props) => {
                 childs : [setError(treeContent, validationTree)]
             }
             setFormTreeComponents(parseTree(newSchema));
+            props.setPopout({display:true, content:"Metadata couldn't be creaded. Check missing fields."})
         }
         setTimeout(() => { props.setLoadingState(false) }, 500)
 
@@ -181,7 +183,8 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => {
     return {
-        setLoadingState: (state) => dispatch(setLoadingState(state))
+        setLoadingState: (state) => dispatch(setLoadingState(state)),
+        setPopout: (popout)=> dispatch(setPopout(popout))
     }
 }
 

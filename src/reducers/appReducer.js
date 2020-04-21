@@ -4,7 +4,11 @@ import {
 
 
 const initialState = {
-    loading: false
+    loading: false,
+    popout: {
+        display: false,
+        content: ""
+    }
 }
 
 export default function (state = initialState, action) {
@@ -13,6 +17,12 @@ export default function (state = initialState, action) {
             return {
                 ...state,
                 loading: action.loading,
+            }
+
+        case APP_ACTIONS.SET_POPOUT:
+            return {
+                ...state,
+                popout: action.popout,
             }
         default:
             return state;
