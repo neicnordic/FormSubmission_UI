@@ -16,6 +16,7 @@ const XMLForm = (props) => {
 
     useEffect(() => {
         if (props.schema) {
+            setTreeContent(null)
             setFormTreeComponents(parseTree(props.schema));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
