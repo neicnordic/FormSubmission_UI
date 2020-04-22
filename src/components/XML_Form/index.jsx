@@ -16,7 +16,6 @@ const XMLForm = (props) => {
 
     useEffect(() => {
         if (props.schema) {
-            setTreeContent(null)
             setFormTreeComponents(parseTree(props.schema));
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,22 +29,28 @@ const XMLForm = (props) => {
     const handleSubmit = e => {
         e.preventDefault();
         props.setLoadingState(true)
-        const validationTree = validateChild({ ...treeContent, required: true })
-        if (validationTree.valid) {
-            var xmlDoc = document.implementation.createDocument(null, props.schema.name);
-            let element = xmlDoc.createElement(treeContent.name)
-            console.log(treeContent)
-            let childTags = treeContent.childs[0].map(child => createXMLTag(xmlDoc, child))
-            childTags.filter(el=>el !== null ).forEach(tag => element.appendChild(tag))
-            xmlDoc.documentElement.appendChild(element)
 
-            console.log(xmlDoc)
-        } else {
-            let newSchema = {
-                ...props.schema,
-                childs: [setError(treeContent, validationTree)]
+        try {
+            const validationTree = validateChild({ ...treeContent, required: true })
+            if (validationTree.valid) {
+                let xmlDoc = document.implementation.createDocument(null, props.schema.name);
+                let element = xmlDoc.createElement(treeContent.name)
+
+                let childTags = treeContent.childs[0].map(child => createXMLTag(xmlDoc, child))
+                childTags.filter(el => el !== null).forEach(tag => element.appendChild(tag))
+                xmlDoc.documentElement.appendChild(element)
+
+                console.log(xmlDoc)
+            } else {
+                let newSchema = {
+                    ...props.schema,
+                    childs: [setError(treeContent, validationTree)]
+                }
+                setFormTreeComponents(parseTree(newSchema));
+                props.setPopout({ display: true, content: "Metadata couldn't be creaded. Check missing fields." })
             }
-            setFormTreeComponents(parseTree(newSchema));
+
+        } catch (e) {
             props.setPopout({ display: true, content: "Metadata couldn't be creaded. Check missing fields." })
         }
         setTimeout(() => { props.setLoadingState(false) }, 500)
@@ -69,6 +74,7 @@ const XMLForm = (props) => {
             if (child.content && child.content !== "") {
                 newChild.error = true
             }
+            console.log(child, errorchild)
             if (!errorchild.childs || errorchild.childs.length === 0) {
                 return newChild
             } else {
