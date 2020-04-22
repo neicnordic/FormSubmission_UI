@@ -22,11 +22,13 @@ const TagContent = props => {
     }
 
     if (props.type === "boolean") {
+        const val = typeof props.value === "boolean" ? props.value : false;
+
         return (
             <div style={{ flexDirection: "row" }}>
                 <input
                     className={inputClassname}
-                    value={props.value}
+                    value={val}
                     placeholder={props.placeholder}
                     onChange={e => handleChange(e.target.value)}
                     type="checkbox"></input>

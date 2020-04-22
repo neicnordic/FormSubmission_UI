@@ -468,21 +468,23 @@
                     <xs:element name="POOL">
                         <xs:annotation>
                             <xs:documentation>
-            Identifies a list of group/pool/multiplex sample members.  This implies that
-            this sample record is a group, pool, or multiplex, but it continues to receive
-            its own accession and can be referenced by an experiment.  By default if
-            no match to any of the listed members can be determined, then the default
-            sample reference is used.
+                                Identifies a list of group/pool/multiplex sample members.  This implies that
+                                this sample record is a group, pool, or multiplex, but it continues to receive
+                                its own accession and can be referenced by an experiment.  By default if
+                                no match to any of the listed members can be determined, then the default
+                                sample reference is used.
                             </xs:documentation>
                         </xs:annotation>
                         <xs:complexType>
                             <xs:sequence>
                                 <xs:element name="DEFAULT_MEMBER" type="PoolMemberType" minOccurs="0" maxOccurs="1">
                                     <xs:annotation>
-                                        <xs:documentation> Reference to the sample that is used when read membership cannot be determined. A default member should
-                  be provided if there exists a possibility that some reads will be left over from barcode/MID resolution. A default member
-                  is not needed when defining a true pool (where individual samples are not distinguished in the reads), or the reads have
-                  been partitioned among the pool members (no leftovers). </xs:documentation>
+                                        <xs:documentation> 
+                                        Reference to the sample that is used when read membership cannot be determined. A default member should
+                                        be provided if there exists a possibility that some reads will be left over from barcode/MID resolution. A default member
+                                        is not needed when defining a true pool (where individual samples are not distinguished in the reads), or the reads have
+                                        been partitioned among the pool members (no leftovers). 
+                                        </xs:documentation>
                                     </xs:annotation>
                                 </xs:element>
                                 <xs:element name="MEMBER" type="PoolMemberType" minOccurs="1" maxOccurs="unbounded">
@@ -499,16 +501,18 @@
     </xs:complexType>
     <xs:complexType name="LibraryDescriptorType">
         <xs:annotation>
-            <xs:documentation> The LIBRARY_DESCRIPTOR specifies the origin of the material being
-        sequenced and any treatments that the material might have undergone that affect the
-        sequencing result. This specification is needed even if the platform does not
-        require a library construction step per se. </xs:documentation>
+            <xs:documentation> 
+                The LIBRARY_DESCRIPTOR specifies the origin of the material being
+                sequenced and any treatments that the material might have undergone that affect the
+                sequencing result. This specification is needed even if the platform does not
+                require a library construction step per se.
+            </xs:documentation>
         </xs:annotation>
         <xs:sequence>
             <xs:element name="LIBRARY_NAME" type="xs:string" maxOccurs="1" minOccurs="0">
                 <xs:annotation>
                     <xs:documentation>
-            The submitter's name for this library.
+             The submitter's name for this library.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>
@@ -518,8 +522,8 @@
             <xs:element name="LIBRARY_LAYOUT">
                 <xs:annotation>
                     <xs:documentation>
-            LIBRARY_LAYOUT specifies whether to expect single, paired, or other configuration of reads.
-            In the case of paired reads, information about the relative distance and orientation is specified.
+                LIBRARY_LAYOUT specifies whether to expect single, paired, or other configuration of reads.
+                In the case of paired reads, information about the relative distance and orientation is specified.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:complexType>
@@ -528,7 +532,7 @@
                             <xs:complexType>
                                 <xs:annotation>
                                     <xs:documentation>
-                    Reads are unpaired (usual case).
+                           Reads are unpaired (usual case).
                                     </xs:documentation>
                                 </xs:annotation>
                             </xs:complexType>
@@ -546,7 +550,7 @@
                 <xs:complexType>
                     <xs:annotation>
                         <xs:documentation>
-              Names the gene(s) or locus(loci) or other genomic feature(s) targeted by the sequence.
+                            Names the gene(s) or locus(loci) or other genomic feature(s) targeted by the sequence.
                         </xs:documentation>
                     </xs:annotation>
                     <xs:sequence>
@@ -555,8 +559,7 @@
                                 <xs:sequence>
                                     <xs:element name="PROBE_SET" type="com:XRefType" maxOccurs="1" minOccurs="0">
                                         <xs:annotation>
-                                            <xs:documentation> Reference to an archived primer or
-                        probe set. Example: dbProbe </xs:documentation>
+                                            <xs:documentation> Reference to an archived primer orprobe set. Example: dbProbe</xs:documentation>
                                         </xs:annotation>
                                     </xs:element>
                                 </xs:sequence>
@@ -565,16 +568,20 @@
                                         <xs:restriction base="xs:string">
                                             <xs:enumeration value="16S rRNA">
                                                 <xs:annotation>
-                                                    <xs:documentation> Bacterial small subunit ribosomal RNA, a locus used for
-                            phylogenetic studies of bacteria and as a target for random target PCR in
-                            environmental biodiversity screening. </xs:documentation>
+                                                    <xs:documentation> 
+                                                    Bacterial small subunit ribosomal RNA, a locus used for
+                                                    phylogenetic studies of bacteria and as a target for random target PCR in
+                                                    environmental biodiversity screening. 
+                                                    </xs:documentation>
                                                 </xs:annotation>
                                             </xs:enumeration>
                                             <xs:enumeration value="18S rRNA">
                                                 <xs:annotation>
-                                                    <xs:documentation> Eukaryotic small subunit ribosomal RNA, a locus used for
-                            phylogenetic studies of eukaryotes and as a target for random target PCR in
-                            environmental biodiversity screening. </xs:documentation>
+                                                    <xs:documentation> 
+                                                        Eukaryotic small subunit ribosomal RNA, a locus used for
+                                                        phylogenetic studies of eukaryotes and as a target for random target PCR in
+                                                        environmental biodiversity screening. 
+                                                    </xs:documentation>
                                                 </xs:annotation>
                                             </xs:enumeration>
                                             <xs:enumeration value="28S rRNA">
@@ -639,7 +646,7 @@
             <xs:element name="POOLING_STRATEGY" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>
-            The optional pooling strategy indicates how the library or libraries are organized if multiple samples are involved.
+             The optional pooling strategy indicates how the library or libraries are organized if multiple samples are involved.
                     </xs:documentation>
                 </xs:annotation>
                 <xs:simpleType>
@@ -649,7 +656,7 @@
             <xs:element name="LIBRARY_CONSTRUCTION_PROTOCOL" type="xs:string" minOccurs="0" maxOccurs="1">
                 <xs:annotation>
                     <xs:documentation>
-            Free form text describing the protocol by which the sequencing library was constructed.
+               Free form text describing the protocol by which the sequencing library was constructed.
                     </xs:documentation>
                 </xs:annotation>
             </xs:element>

@@ -4,34 +4,32 @@
         <STUDY_REF refname="TODO: STUDY ALIAS OF RELEVANT STUDY OBJECT"/>
         <DESIGN>
             <DESIGN_DESCRIPTION>
-TODO: DETAILS ABOUT THE SETUP AND GOALS OF THE EXPERIMENT AS SUPPLIED BY INVESTIGATOR
+                TODO: DETAILS ABOUT THE SETUP AND GOALS OF THE EXPERIMENT AS SUPPLIED BY INVESTIGATOR
             </DESIGN_DESCRIPTION>
             <SAMPLE_DESCRIPTOR refname="TODO: SAMPLE ALIAS OF RELEVANT SAMPLE OBJECT"/>
             <LIBRARY_DESCRIPTOR>
                 <LIBRARY_NAME>TODO: NAME OF LIBRARY</LIBRARY_NAME>
                 <LIBRARY_STRATEGY>
-TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
+                    TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
                 </LIBRARY_STRATEGY>
                 <LIBRARY_SOURCE>
-TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
+                    TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
                 </LIBRARY_SOURCE>
                 <LIBRARY_SELECTION>
-TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
+                    TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
                 </LIBRARY_SELECTION>
                 <LIBRARY_LAYOUT>
                     <SINGLE/>
                 </LIBRARY_LAYOUT>
                 <LIBRARY_CONSTRUCTION_PROTOCOL>
-TODO: PROTOCOL BY WHICH THE LIBRARY WAS CONSTRUCTED
+                    TODO: PROTOCOL BY WHICH THE LIBRARY WAS CONSTRUCTED
                 </LIBRARY_CONSTRUCTION_PROTOCOL>
             </LIBRARY_DESCRIPTOR>
-            <!--
- Please note that the spot descriptor is no longer required for most formats. 
--->
+            <!--Please note that the spot descriptor is no longer required for most formats.  -->
             <SPOT_DESCRIPTOR>
                 <SPOT_DECODE_SPEC>
                     <SPOT_LENGTH>
-TODO: Expected number of base calls or cycles per spot (raw sequence length including all application and technical tags and mate pairs)
+                        TODO: Expected number of base calls or cycles per spot (raw sequence length including all application and technical tags and mate pairs)
                     </SPOT_LENGTH>
                     <READ_SPEC>
                         <READ_INDEX>0</READ_INDEX>
@@ -45,7 +43,7 @@ TODO: Expected number of base calls or cycles per spot (raw sequence length incl
         <PLATFORM>
             <ILLUMINA>
                 <INSTRUMENT_MODEL>
-TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
+                    TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML
                 </INSTRUMENT_MODEL>
             </ILLUMINA>
         </PLATFORM>

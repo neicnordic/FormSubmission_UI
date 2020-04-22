@@ -94,6 +94,6 @@ export const IdentifierType = {
 }
 
 
-const RefObjectType = {
-    name:""
+const RefPlatformType = {
+    placeholder:"The PLATFORM record selects which sequencing platform and platform-specific runtime parameters. This will be determined by the Center."
 }

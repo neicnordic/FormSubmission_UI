@@ -6,7 +6,8 @@ import {
 const initialState = {
     xml_schema: null,
     schema_type: null,
-    form_schema: null
+    form_schema: null,
+    valid_form_schema: true,
 }
 
 export default function (state = initialState, action) {
