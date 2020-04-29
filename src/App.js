@@ -4,6 +4,7 @@ import XML_READER from './components/XML_Reader'
 import NavigationBar from './components/NavigationBar'
 import LoadingComponent from "./components/LoadingComponent"
 import PopOutComponent from "./components/InfoPopout"
+import ExcelSheet from "./components/ExcelSheet"
 
 import { Provider } from 'react-redux'
 import store from './store'
@@ -28,6 +29,9 @@ function App() {
           <Switch>
             <Route exact path="/">
               <XML_FORM />
+            </Route>
+            <Route exact path="/excel">
+              <ExcelSheet />
             </Route>
             <Route exact path="/submit">
               <XML_READER />

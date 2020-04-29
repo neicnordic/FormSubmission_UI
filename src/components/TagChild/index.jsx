@@ -33,7 +33,8 @@ const TagChild = (props) => {
             }
             if (props.child.childs) {
                 if (!props.child.childs.every(isMatrix)) {
-                    content.childs = [content.childs];
+                    const min = props.child.min  || 1
+                    content.childs = Array(min).fill(content.childs);
                 }
                 else
                     content.childs = props.child.childs
@@ -54,6 +55,9 @@ const TagChild = (props) => {
         props.handleChange(newContent, props.child.name)
     };
 
+
+    // {name:"I_AM_A_TAG", content:true, childs:[{}]
+    // 
     const handleChildChange = (change, name, index = 0) => {
         const changedChild = tagContent.childs[index].map(child => {
             if (child.name === name)
@@ -113,6 +117,8 @@ const TagChild = (props) => {
     const isMultiple = props.child.multiple;
     const isRequired = props.child.required;
     const isError = props.child.error;
+    const min = props.child.min || 0;
+    const max = props.child.max || Infinity;
 
     if (tagContent === null) {
         return (<></>)
@@ -137,7 +143,7 @@ const TagChild = (props) => {
                         <IconButton
                             size="small"
                             icon="plus-circle"
-                            disabled={false}
+                            disabled={tagContent.childs.length >= max}
                             handleClick={handleAddChild}
                         />
                     </div>
@@ -148,7 +154,7 @@ const TagChild = (props) => {
                                     <IconButton
                                         size="small"
                                         icon="minus-circle"
-                                        disabled={tagContent.childs.length <= props.child.min}
+                                        disabled={tagContent.childs.length <= min}
                                         handleClick={() => { handleDelete(index) }} />
                                 </div>
                                 <DisplayChildTags

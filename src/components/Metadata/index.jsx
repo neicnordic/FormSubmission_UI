@@ -24,7 +24,6 @@ const MetaData = props => {
     return attributes.map((attr, key) => {
         const enumerate = metadata[attr].options;
         const labelClassname = classNames('xml_form__label ', { 'error': metadata[attr].error && !hasChanged });
-
         return (
             <div className={"xml_form__field"} key={key}>
                 <label className={labelClassname}>{attr.replace(/[^a-zA-Z ]/g, " ").toLowerCase()}</label>
@@ -35,6 +34,7 @@ const MetaData = props => {
                         options={enumerate} />
                 ) : <TagContent
                         error={metadata[attr].error}
+                        validator={metadata[attr].validator}
                         name={attr}
                         value={metadata[attr].value}
                         handleChange={handleChange}

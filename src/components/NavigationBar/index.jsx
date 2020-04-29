@@ -86,6 +86,10 @@ const DesktopTabs = props => {
                     onClick={() => props.history.push("/submit")}>
                     {'Upload XML'}
                 </span>
+                <span className={uploadClassNamelink}
+                    onClick={() => props.history.push("/excel")}>
+                    {'Test'}
+                </span>
             </div>
         </>
     )

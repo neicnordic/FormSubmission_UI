@@ -1,17 +1,19 @@
-import React , {useState} from "react"
+import React, { useState } from "react"
 import classNames from "classnames"
 
 const TagContent = props => {
     const isBoolean = props.type === "boolean";
     const isError = props.error === true;
 
-    const [hasChanged,setHaschanged] = useState(false);
+    const [hasChanged, setHaschanged] = useState(false);
 
     const inputClassname = classNames('xml_form__input', { 'error': isError && !hasChanged });
     const optionBarClassname = classNames('xml_form__option-bar ', { 'error': isError && !hasChanged });
 
 
     const handleChange = (event_value) => {
+        if(props.validator)
+            props.validator()
         if (isBoolean) {
             props.handleChange(!props.value, props.name)
 
@@ -20,8 +22,9 @@ const TagContent = props => {
         }
         setHaschanged(true)
     }
-
-    if (props.type === "boolean") {
+    if (props.type === "choice") {
+        
+    } else if (props.type === "boolean") {
         const val = typeof props.value === "boolean" ? props.value : false;
 
         return (

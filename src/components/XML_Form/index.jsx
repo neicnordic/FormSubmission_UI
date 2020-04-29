@@ -168,7 +168,7 @@ const XMLForm = (props) => {
                         ...errors,
                         meta: {
                             ...errors.meta,
-                            [key]: child.required ? child.meta[key].value !== "" : true
+                            [key]: child.required ? child.meta[key].value !== "" : false
                         }
                     }
                 })
