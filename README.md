@@ -40,32 +40,55 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+## WEBSITE EXPLICATION
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The current website is in charge or creating XML files based on the provided XSD schemas. To do so, the XSD output has been structured in a JSON inside the schemas folder. In this section, the creation of form fields is explained together with the website flow.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The current application contains the components inside the components folder. The App.js is the root component which is injected in the root div of public/index.html file. Projecr main components and files are:
 
-### Code Splitting
+- XML_FORM: Component in charge of creating the forms, validate it's values and create the XML files.
+- TagChild: Component in charge of representing a XML tag. Displays metadata (attributes of the XML), content  (text if is a XML text type) and childs if contains.
+- Metadata: Component in charge of displaying the metadata of a XML tag.
+- TagContent: Component in charge of displaying the input field. This input can be for a metadata attribute or a content of a tag. The types of contents are booleam or text.
+- Schema folders: Folders containing, the XSD schema, and example of the XML and the JSON tree representing the XSD output and rules.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
 
-### Analyzing the Bundle Size
+The application works with react-redux. APP logical state are handled  APP reducer and APP actions, whereas XML form state are under the XML actions and reducers.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+As it is explained before, the component in charge of displaying the forms is XML_FORM component. This component is subscribed into to the XML store reducer, which gets the JSON form from the selected schema.
 
-### Making a Progressive Web App
+The XML schema is set once the user selects the desired tab from the navigationBar component. This component throws an action which is setSchema. Schemas and tabs MUST have the same name. setSchema action is a function which contains a switch that loads the tree from the schemas folder.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
+```
 
-### Advanced Configuration
+Each XML tag in the JSON tree is represented the following way:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
+{
+    name:"TAG_NAME"
+    content: TURE/FALSE  // depending if it contains text inside, ex: <A>some text</A>
+    value: "" // if the tag has content, the value of its default content, by default should be ""
+    placeholder:"" // If some information wants to be displayed in the form under the tag name
+    childs: [{ ... }], // CHILDS OF THE TAG, if the actual tag doesn't contain any, don't add
+    multiple: TRUE/FALSE // IF THIS TAG ALLOWS multiple childs 
+    required: TRUE/FALSE // If the field is mandatory to create the XML 
+    max: integer, // IF THIS TAG ALLOWS multiple childs 
+    min:integer, // IF THIS TAG ALLOWS multiple childs 
+    meta:{
+        META_NAME:{ // the name of actual XML attribute
+            value:"",// default value of the attribute
+            placeholder:""// Information to be displayed in the input
+        },
+        {
+            ...
+        },
+        ...
+    }
+}
+```
 
-### Deployment
+## TODOS
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
+- Connect the FE with the BE. This means that the FE should send the created XML files to the BE and display feedback if the request has suceed or not.
+- Finish validation of the fields. The components in charge are XML_FORM, TagChild, TagContent, Metadata. This is done by checking if the components with the flag required are filled.
+- Add the possibility of creating multiple studies,....
 
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
