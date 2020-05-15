@@ -3,18 +3,20 @@ import className from "classnames"
 import TagContent from "../TagContent"
 import IconButton from "../IconButton"
 import MetaData from '../Metadata'
-import { useEffect } from "react"
-import { useState } from "react"
+import {useEffect} from "react"
+import {useState} from "react"
 import _ from "lodash"
 
 
-const DisplayChildTags = ({ children, handleChildChange }) => {
+const DisplayChildTags = ({children, handleChildChange}) => {
     return (
         children.map((child, key) =>
             <TagChild
                 key={child.name}
                 handleChange={handleChildChange}
-                child={child} />
+                child={child}
+
+            />
         )
     )
 };
@@ -28,7 +30,7 @@ const TagChild = (props) => {
             content: null
         }
         if (props.child.childs)
-            content.childs = props.child.childs.map(child => ({ name: child.name }))
+            content.childs = props.child.childs.map(child => ({name: child.name}))
         if (props.child.multiple) {
             content.childs = [content.childs]
         }
@@ -45,7 +47,7 @@ const TagChild = (props) => {
     };
 
     const handleChildChange = (change, name) => {
-        const newChilds = _.unionBy([{ ...change, name }], tagContent, 'name')
+        const newChilds = _.unionBy([{...change, name}], tagContent, 'name')
         const newContent = {
             ...tagContent,
             childs: newChilds
@@ -65,13 +67,13 @@ const TagChild = (props) => {
     };
 
     const handleAddChild = () => {
-        let newTagContent = { ...tagContent };
-        newTagContent.childs.push(props.child.childs.map(child => ({ name: child.name })))
+        let newTagContent = {...tagContent};
+        newTagContent.childs.push(props.child.childs.map(child => ({name: child.name})))
         setTagContent(newTagContent)
     }
 
     const handleDelete = index => {
-        let newContent = { ...tagContent };
+        let newContent = {...tagContent};
 
         newContent.childs.splice(index, 1)
         setTagContent(newContent)
@@ -82,7 +84,7 @@ const TagChild = (props) => {
     const hasChildren = props.child.childs;
     const isMultiple = props.child.multiple;
 
-    const labelClassName = className('xml_form__label', { 'xml_form__labe--bold': !props.child.content });
+    const labelClassName = className('xml_form__label', {'xml_form__labe--bold': !props.child.content});
 
     return (
         <div className="xml_form__field">
@@ -95,7 +97,7 @@ const TagChild = (props) => {
                 <TagContent
                     name={props.child.name}
                     handleChange={handleContentChange}
-                    placeholder={props.child.placeholder} />
+                    placeholder={props.child.placeholder}/>
             )}
             {isMultiple && Array.isArray(tagContent.childs) ? (
                 <>
@@ -109,23 +111,24 @@ const TagChild = (props) => {
                     </div>
                     {tagContent.childs.map((_, index) =>
                         <div className="xml_form__multiple_content">
-                            <div style={{ float: "right" }}>
+                            <div style={{float: "right"}}>
                                 <IconButton
                                     size="small"
                                     icon="minus-circle"
                                     disabled={tagContent.childs.length === 1}
-                                    handleClick={() => { handleDelete(index) }} />
+                                    handleClick={() => {
+                                        handleDelete(index)
+                                    }}/>
                             </div>
                             <DisplayChildTags
                                 handleChildChange={handleChildChange}
-                                children={props.child.childs} />
+                                children={props.child.childs}/>
                         </div>
-
                     )}
                 </>
             ) : hasChildren && <DisplayChildTags
                 handleChildChange={handleChildChange}
-                children={props.child.childs} />
+                children={props.child.childs}/>
             }
 
         </div>

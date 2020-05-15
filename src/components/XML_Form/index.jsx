@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from "react-redux"
+import React, {useEffect, useState} from 'react'
+import {connect} from "react-redux"
 import TagChild from "../TagChild"
 import "./style.css"
 
@@ -26,6 +26,13 @@ const XMLForm = (props) => {
         })
     };
 
+    function iterate(item, index, array) {
+        console.log(item);
+        if (index === array.length - 1) {
+            console.log('The last iteration!');
+        }
+    }
+
 
     const parseTree = tree => {
         const treeName = tree.name
@@ -33,7 +40,7 @@ const XMLForm = (props) => {
             <TagChild
                 handleChange={handleChildChange}
                 key={child.name}
-                child={child} />
+                child={child}/>
         )
 
         return (
@@ -41,8 +48,9 @@ const XMLForm = (props) => {
                 <div className="xml_form__content">
                     <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
                     {content}
+
                 </div>
-                <input className="xml_form__submit" type="submit">
+                <input className="xml_form__submit" type="submit" align="table-row">
                 </input>
             </>
         )
@@ -52,7 +60,7 @@ const XMLForm = (props) => {
         e.preventDefault();
         console.log(formContent)
     }
-    
+
     return (
         <form className="xml_form__container" onSubmit={handleSubmit}>
             {formTreeComponents}
@@ -66,9 +74,7 @@ const mapStateToProps = (state, ownProps) => ({
 })
 
 const mapDispatchToProps = dispatch => {
-    return {
-
-    }
+    return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(XMLForm)
