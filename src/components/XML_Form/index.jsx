@@ -46,7 +46,7 @@ const XMLForm = (props) => {
         return (
             <>
                 <div className="xml_form__content">
-                    <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
+                    <h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>
                     {content}
 
                 </div>

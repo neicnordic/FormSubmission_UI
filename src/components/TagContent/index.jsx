@@ -14,7 +14,7 @@ const TagContent = props => {
             <table>
                 <tr>
                     <td align="right"><input
-                        // className="xml_form__input"
+                        className="xml_form__input"
                         value={value}
                         placeholder={props.placeholder}
                         onChange={e => handleChange(e.target.value)}
