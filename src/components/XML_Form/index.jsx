@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
 import TagChild from "../TagChild"
 import "./style.css"
+import fetch from 'isomorphic-fetch';
 
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
@@ -46,11 +47,11 @@ const XMLForm = (props) => {
         return (
             <>
                 <div className="xml_form__content">
-                    <h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>
+                    {/*<h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>*/}
                     {content}
 
                 </div>
-                <input className="xml_form__submit" type="submit" align="table-row">
+                <input className="xml_form__submit" type="submit">
                 </input>
             </>
         )
@@ -75,6 +76,23 @@ const mapStateToProps = (state, ownProps) => ({
 
 const mapDispatchToProps = dispatch => {
     return {}
+}
+
+function doFetch(Content) {
+    return fetch(
+        '/some/endpoint', {
+            method: 'POST',
+            headers: new Headers(
+                {
+                    'Content-Type': 'text/xml; charset=utf-8',
+                    'Accept': '*/*',
+                    'Accept-Language': 'en-GB',
+                    'Accept-Encoding': 'gzip, deflate',
+                    'Connection': 'Keep-alive',
+                    'Content-Length': Content.length
+                }),
+            body: Content
+        });
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(XMLForm)

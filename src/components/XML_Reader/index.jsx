@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, {useState} from 'react'
 import XMLParser from 'react-xml-parser'
-import { connect } from 'react-redux';
-import { submitXMLSchema } from '../../actions/XML_validator'
+import {connect} from 'react-redux';
+import {submitXMLSchema} from '../../actions/XML_validator'
 import "./style.css"
 
 
@@ -31,10 +31,9 @@ const XMLSchemaReader = (props) => {
     }
 
 
-
     return (
         <div className="container">
-            <form className="form_XML" onSubmit={handleSubmit} >
+            <form className="form_XML" onSubmit={handleSubmit}>
                 <div className="form_XML__input_container">
                     <label for="myfile">Select a file:</label>
                     <input type="file" id="myfile" name="xml_schema" onChange={e => setFile(e.target.files[0])}></input>
