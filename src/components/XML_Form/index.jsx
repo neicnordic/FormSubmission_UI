@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
 import TagChild from "../TagChild"
+// import addRow from '../TagContent';
 import "./style.css"
 import fetch from 'isomorphic-fetch';
 
@@ -27,13 +28,6 @@ const XMLForm = (props) => {
         })
     };
 
-    function iterate(item, index, array) {
-        console.log(item);
-        if (index === array.length - 1) {
-            console.log('The last iteration!');
-        }
-    }
-
 
     const parseTree = tree => {
         const treeName = tree.name
@@ -44,15 +38,16 @@ const XMLForm = (props) => {
                 child={child}/>
         )
 
+
         return (
             <>
-                <div className="xml_form__content">
-                    {/*<h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>*/}
+                <div id="insertion" className="xml_form__content">
+                    <h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>
                     {content}
 
                 </div>
-                <input className="xml_form__submit" type="submit">
-                </input>
+                <input className="xml_form__submit" type="submit"/>
+                {/*<input type="button" onClick={addRow} value="Add one more "/>*/}
             </>
         )
     }
