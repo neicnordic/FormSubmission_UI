@@ -1,5 +1,6 @@
 import StudyXML from "../schemas/Study"
 import SampleXML from "../schemas/Sample"
+import AnalysisXML from "../schemas/Analysis"
 
 export const XML_SCHEMA_ACTIONS = {
     SET_XML_SCHEMA: "SET_XML_SCHEMA",
@@ -28,6 +29,8 @@ const getXMLDatafromSchemaType = (type) => {
             return StudyXML
         case "Sample":
             return SampleXML
+        case "Analysis":
+            return AnalysisXML
         default:
             return null;
     }

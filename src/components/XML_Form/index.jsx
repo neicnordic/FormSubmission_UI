@@ -3,6 +3,9 @@ import { connect } from "react-redux"
 import TagChild from "../TagChild"
 import "./style.css"
 
+// main component that collects all TagChild component and assigns it
+// its own content, to build a tree based form for the user to submit
+
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
     const [formContent, setFormContent] = useState({})
@@ -35,6 +38,7 @@ const XMLForm = (props) => {
                 key={child.name}
                 child={child} />
         )
+        // returns a common div for all document types which the user can upload
 
         return (
             <>
