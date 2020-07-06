@@ -40,6 +40,16 @@ const XMLForm = (props) => {
                 let childTags = treeContent.childs[0].map(child => createXMLTag(xmlDoc, child))
                 childTags.filter(el => el !== null).forEach(tag => element.appendChild(tag))
                 xmlDoc.documentElement.appendChild(element)
+                e.preventDefault();
+                fetch("/upload", {
+                    method: "POST",
+                    body: JSON.stringify(xmlDoc)
+                })
+                    .then(raw => {
+                        if (raw.ok) {
+                            return raw.json();
+                        }
+                    })
 
                 console.log(xmlDoc)
             } else {
