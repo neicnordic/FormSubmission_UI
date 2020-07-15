@@ -6,8 +6,10 @@ import {
     setPopout
 } from "../../actions/app.actions"
 
+
 import "./style.css"
 import axios from "axios";
+
 
 const TRYGGVE_API = axios.create({
     baseURL: 'http://localhost:5000'
@@ -49,14 +51,13 @@ const XMLForm = (props) => {
 
                 e.preventDefault();
                 var RealXML = new XMLSerializer().serializeToString(xmlDoc);
-                var blob = new Blob([RealXML], { type: 'text/octet-stream' });
+                var blob = new Blob([RealXML], {type: 'text/octet-stream'});
                 var file = new File([blob], "foo.xml", {type: "text/octet-stream"});
 
                 var formData = new FormData();
 
                 formData.append('file', file);
                 formData.append('filename', validationTree.name + '.xml');
-                console.log(formData)
 
                 return TRYGGVE_API.post(`/upload`, formData, {
                     params: {'object_type': validationTree.name},
@@ -64,17 +65,14 @@ const XMLForm = (props) => {
                         'Content-Type': 'text/xml'
                     }
                 })
-                    .then(raw => {
-                            if (raw.ok) {
-                                return raw.json();
-                            }
-                        })
-                    // ).catch(err => {
-                    //     callback(true, err)
-                    //     // callback(true, err)
-                    // })
-
-
+                    .then((response) => {
+                        // console.log(response);
+                        // return response.json;
+                        alert(response.statusText);
+                    }, (error) => {
+                        console.log(error.value);
+                        alert(error.value);
+                    });
 
                 // fetch("http://localhost:5000/upload", {
                 //     params: {'object_type': validationTree.name},
