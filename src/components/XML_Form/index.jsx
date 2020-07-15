@@ -1,5 +1,5 @@
-import React, { useEffect, useState, useRef } from 'react'
-import { connect } from "react-redux"
+import React, {useEffect, useState, useRef} from 'react'
+import {connect} from "react-redux"
 import TagChild from "../TagChild"
 import {
     setLoadingState,
@@ -7,6 +7,12 @@ import {
 } from "../../actions/app.actions"
 
 import "./style.css"
+import axios from "axios";
+
+const TRYGGVE_API = axios.create({
+    baseURL: 'http://localhost:5000'
+});
+
 
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
@@ -32,7 +38,7 @@ const XMLForm = (props) => {
         props.setLoadingState(true)
 
         try {
-            const validationTree = validateChild({ ...treeContent, required: true })
+            const validationTree = validateChild({...treeContent, required: true})
             if (validationTree.valid) {
                 let xmlDoc = document.implementation.createDocument(null, props.schema.name);
                 let element = xmlDoc.createElement(treeContent.name)
@@ -40,31 +46,64 @@ const XMLForm = (props) => {
                 let childTags = treeContent.childs[0].map(child => createXMLTag(xmlDoc, child))
                 childTags.filter(el => el !== null).forEach(tag => element.appendChild(tag))
                 xmlDoc.documentElement.appendChild(element)
+
                 e.preventDefault();
-                fetch("/upload", {
-                    method: "POST",
-                    body: JSON.stringify(xmlDoc)
+                var RealXML = new XMLSerializer().serializeToString(xmlDoc);
+                var blob = new Blob([RealXML], { type: 'text/octet-stream' });
+                var file = new File([blob], "foo.xml", {type: "text/octet-stream"});
+
+                var formData = new FormData();
+
+                formData.append('file', file);
+                formData.append('filename', validationTree.name + '.xml');
+                console.log(formData)
+
+                return TRYGGVE_API.post(`/upload`, formData, {
+                    params: {'object_type': validationTree.name},
+                    headers: {
+                        'Content-Type': 'text/xml'
+                    }
                 })
                     .then(raw => {
-                        if (raw.ok) {
-                            return raw.json();
-                        }
-                    })
+                            if (raw.ok) {
+                                return raw.json();
+                            }
+                        })
+                    // ).catch(err => {
+                    //     callback(true, err)
+                    //     // callback(true, err)
+                    // })
 
-                console.log(xmlDoc)
+
+
+                // fetch("http://localhost:5000/upload", {
+                //     params: {'object_type': validationTree.name},
+                //     method: "POST",
+                //     headers: {
+                //         'Content-Type': 'application/json'
+                //     },
+                //     body: JSON.stringify(formData),
+                // })
+                //     .then(raw => {
+                //         if (raw.ok) {
+                //             return raw.json();
+                //         }
+                //     })
             } else {
                 let newSchema = {
                     ...props.schema,
                     childs: [setError(treeContent, validationTree)]
                 }
                 setFormTreeComponents(parseTree(newSchema));
-                props.setPopout({ display: true, content: "Metadata couldn't be creaded. Check missing fields." })
+                props.setPopout({display: true, content: "Metadata couldn't be created. Check missing fields."})
             }
 
         } catch (e) {
-            props.setPopout({ display: true, content: "Metadata couldn't be creaded. Check missing fields." })
+            props.setPopout({display: true, content: "Metadata couldn't be created. Check missing fields."})
         }
-        setTimeout(() => { props.setLoadingState(false) }, 500)
+        setTimeout(() => {
+            props.setLoadingState(false)
+        }, 500)
 
     }
 
@@ -72,7 +111,7 @@ const XMLForm = (props) => {
         if (errorchild.valid) {
             return child
         } else {
-            let newChild = { ...child };
+            let newChild = {...child};
 
             if (child.meta) {
                 Object.keys(child.meta).forEach(key => {
@@ -146,7 +185,7 @@ const XMLForm = (props) => {
                 <TagChild
                     handleChange={handleChildChange}
                     key={child.name}
-                    child={child} />)
+                    child={child}/>)
         })
 
         return (
@@ -189,7 +228,7 @@ const XMLForm = (props) => {
             let isChildValid = (child.childs && child.childs.length > 0) ? false : true;
 
             if (child.childs && child.childs.length > 0) {
-                errors = { ...errors, childs: child.childs[0].map(child => validateChild(child)) }
+                errors = {...errors, childs: child.childs[0].map(child => validateChild(child))}
                 isChildValid = errors.childs.every(v => v.valid === true);
             }
             errors.valid = isMetaValid && isContentValid && isChildValid
@@ -203,8 +242,8 @@ const XMLForm = (props) => {
         return (
             <div className="welcome__container">
                 <h3>Welcome!</h3>
-                <span>Please select a form from the navigation bar to fill-in the desired metada</span>
-                <span>or upload an XML file with the desired metada to upload.</span>
+                <span>Please select a form from the navigation bar to fill-in the desired metadata</span>
+                <span>or upload an XML file with the desired metadata to upload.</span>
             </div>
         )
     } else {
