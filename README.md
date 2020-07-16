@@ -88,7 +88,16 @@ Each XML tag in the JSON tree is represented the following way:
 
 ## TODOS
 
-- Connect the FE with the BE. This means that the FE should send the created XML files to the BE and display feedback if the request has suceed or not.
 - Finish validation of the fields. The components in charge are XML_FORM, TagChild, TagContent, Metadata. This is done by checking if the components with the flag required are filled.
 - Add the possibility of creating multiple studies,....
 
+## HOW TO RUN
+
+1 - Make sure you have installed all dependencies listed in package.json with npm install;
+2 - enter npm start to run the app locally;
+3 - fill out the form and Submit (currently the Study object is the only one that works 100%).
+
+The other types (Sample, Experiment, Analysis...) probably need some fixes inside
+the respective json files in order to map their tag fields properly before submission.
+
+THIS UI VERSION ONLY WORKS WITH THE DEVELOPMENT BRANCH OF THE BACKEND REPO. 
