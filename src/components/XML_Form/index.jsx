@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
 import TagChild from "../TagChild"
 // import addRow from '../TagContent';
-import handleAddChild from "../TagChild"
 import "./style.css"
-import fetch from 'isomorphic-fetch';
+
+const rand = () => Math.floor(Math.random() * 9000000);
 
 const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
@@ -29,31 +29,6 @@ const XMLForm = (props) => {
         })
     };
 
-    const addTree = tree => {
-        const content = tree.childs.map(child =>
-            <TagChild
-                handleChange={handleAddChild}
-                key={child.name}
-                child={child}/>
-        )
-
-        let ref = document.getElementById('insertion')
-
-        for (let con = 0; con < 6; con++) {
-            let input = document.createElement('input')
-            input.innerHTML = content[con]
-            ref.appendChild(input)
-        }
-
-        return (
-            <>
-                <div id="other" className="xml_form__content">
-                    {content}
-                </div>
-            </>
-        )
-    }
-
 
     const parseTree = tree => {
         const treeName = tree.name
@@ -64,18 +39,6 @@ const XMLForm = (props) => {
                 child={child}/>
         )
 
-        function addRow() {
-            let content = {}
-
-            props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
-            setFormContent(content);
-            setFormTreeComponents(addTree(props.schema))
-        }
-        // function addRow() {
-        //     let itm = document.getElementById("insertion").lastChild;
-        //     let cln = itm.cloneNode(true);
-        //     document.getElementById("insertion").appendChild(cln);
-        // }
 
         return (
             <>
@@ -85,7 +48,7 @@ const XMLForm = (props) => {
 
                 </div>
                 <input className="xml_form__submit" type="submit"/>
-                <input type="button" onClick={addRow} value="Add one more "/>
+                {/*<input type="button" onClick={addRow} value="Add one more "/>*/}
             </>
         )
     }
@@ -111,21 +74,21 @@ const mapDispatchToProps = dispatch => {
     return {}
 }
 
-function doFetch(Content) {
-    return fetch(
-        '/some/endpoint', {
-            method: 'POST',
-            headers: new Headers(
-                {
-                    'Content-Type': 'text/xml; charset=utf-8',
-                    'Accept': '*/*',
-                    'Accept-Language': 'en-GB',
-                    'Accept-Encoding': 'gzip, deflate',
-                    'Connection': 'Keep-alive',
-                    'Content-Length': Content.length
-                }),
-            body: Content
-        });
-}
+// function doFetch(Content) {
+//     return fetch(
+//         '/some/endpoint', {
+//             method: 'POST',
+//             headers: new Headers(
+//                 {
+//                     'Content-Type': 'text/xml; charset=utf-8',
+//                     'Accept': '*/*',
+//                     'Accept-Language': 'en-GB',
+//                     'Accept-Encoding': 'gzip, deflate',
+//                     'Connection': 'Keep-alive',
+//                     'Content-Length': Content.length
+//                 }),
+//             body: Content
+//         });
+// }
 
 export default connect(mapStateToProps, mapDispatchToProps)(XMLForm)
