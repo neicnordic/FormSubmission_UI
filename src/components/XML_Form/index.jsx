@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
 import TagChild from "../TagChild"
-// import addRow from '../TagContent';
 import "./style.css"
+// import {ADD_FORM} from "../../reducers/xmlReducer";
+import {getXMLDatafromSchemaType} from "../../actions/XML_validator";
 
 const rand = () => Math.floor(Math.random() * 9000000);
 
@@ -10,16 +11,25 @@ const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
     const [formContent, setFormContent] = useState({})
 
+
     useEffect(() => {
-        if (props.schema) {
+        if (props.schemas) {
             let content = {}
+            // const newArray = data.map(element => element.form_schema);
 
-            props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
+            // for (let d = 0; d < props.schemas.length; d++) {
+            props.schemas.childs.map(child => child.name).forEach(name => content[name] = null);
             setFormContent(content);
+            setFormTreeComponents(parseTree(props.schemas));
+            // }
 
-            setFormTreeComponents(parseTree(props.schema));
+            // data.forEach(function (item) {
+            //     schema.form_schema.childs.map(child => child.name).forEach(name => content[name] = null);
+            //     setFormContent(content);
+            //     setFormTreeComponents(parseTree(props.form_schema));
+            // })
         }
-    }, [props.schema])
+    }, [props.schemas])
 
 
     const handleChildChange = (change, name) => {
@@ -30,6 +40,13 @@ const XMLForm = (props) => {
     };
 
 
+    const addForm = (props) => {
+        return {
+            ...props.state,
+            forms: [...this.state.chosen_schemas, {...getXMLDatafromSchemaType(this.state.schema_type).tree}]
+        }
+    };
+
     const parseTree = tree => {
         const treeName = tree.name
         const content = tree.childs.map(child =>
@@ -39,16 +56,15 @@ const XMLForm = (props) => {
                 child={child}/>
         )
 
-
         return (
             <>
                 <div id="insertion" className="xml_form__content">
                     <h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>
                     {content}
-
                 </div>
+
                 <input className="xml_form__submit" type="submit"/>
-                {/*<input type="button" onClick={addRow} value="Add one more "/>*/}
+                <input type="button" onClick={addForm} value="Add one more "/>
             </>
         )
     }
@@ -65,30 +81,19 @@ const XMLForm = (props) => {
     )
 }
 
+// export function addForm(state) {
+//     return updateStateToProps(state.xml_form.form_schema)
+// }
+
 const mapStateToProps = (state, ownProps) => ({
-    schema: state.xml_form.form_schema,
-    type: state.xml_form.schema_type
+    schemas: state.xml_form.chosen_schemas[0].form_schema
+    // type: state.xml_form.chosen_schemas[0].schema_type,
 })
+
 
 const mapDispatchToProps = dispatch => {
     return {}
 }
 
-// function doFetch(Content) {
-//     return fetch(
-//         '/some/endpoint', {
-//             method: 'POST',
-//             headers: new Headers(
-//                 {
-//                     'Content-Type': 'text/xml; charset=utf-8',
-//                     'Accept': '*/*',
-//                     'Accept-Language': 'en-GB',
-//                     'Accept-Encoding': 'gzip, deflate',
-//                     'Connection': 'Keep-alive',
-//                     'Content-Length': Content.length
-//                 }),
-//             body: Content
-//         });
-// }
-
 export default connect(mapStateToProps, mapDispatchToProps)(XMLForm)
+

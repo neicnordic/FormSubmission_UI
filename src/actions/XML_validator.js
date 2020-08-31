@@ -3,7 +3,8 @@ import SampleXML from "../schemas/Sample"
 
 export const XML_SCHEMA_ACTIONS = {
     SET_XML_SCHEMA: "SET_XML_SCHEMA",
-    SET_SCHEMA_TYPE: "SET_SCHEMA_TYPE"
+    SET_SCHEMA_TYPE: "SET_SCHEMA_TYPE",
+    ADD_FORM: "ADD_FORM"
 }
 
 export const setSchemaType = schema_type => {
@@ -21,8 +22,13 @@ export const submitXMLSchema = schema => ({
     schema
 })
 
+export const addXMLSchema = schema => ({
+    type: XML_SCHEMA_ACTIONS.SET_XML_SCHEMA,
+    schema
+})
 
-const getXMLDatafromSchemaType = (type) => {
+
+export const getXMLDatafromSchemaType = (type) => {
     switch (type) {
         case "Study":
             return StudyXML

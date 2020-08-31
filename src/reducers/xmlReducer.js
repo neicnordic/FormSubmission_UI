@@ -1,28 +1,53 @@
 import {
-    XML_SCHEMA_ACTIONS
+    XML_SCHEMA_ACTIONS, getXMLDatafromSchemaType
 } from '../actions/XML_validator'
 
 
-const initialState = {
-    xml_schema: null,
-    schema_type: null,
-    form_schema: null
+const rand = () => Math.floor(Math.random() * 9000000);
+
+export function ADD_FORM() {
+    return {
+        type: "ADD_FORM"
+    };
 }
+
+
+const initialState = {
+    chosen_schemas: [{
+        id: rand(),
+        xml_schema: null,
+        schema_type: null,
+        form_schema: null
+    }]
+}
+
 
 export default function (state = initialState, action) {
     switch (action.type) {
         case XML_SCHEMA_ACTIONS.SET_XML_SCHEMA:
             return {
                 ...state,
-                xml_schema: action.schema,
+                chosen_schemas: [{xml_schema: action.schema}]
             }
         case XML_SCHEMA_ACTIONS.SET_SCHEMA_TYPE:
             return {
                 ...state,
-                schema_type: action.schema_type,
-                form_schema: action.schema
+                chosen_schemas: [{
+                    form_schema: action.schema,
+                    schema_type: action.schema_type,
+                    xml_schema: action.schema
+                }]
             }
+        // case XML_SCHEMA_ACTIONS.ADD_FORM:
+        //     return {
+        //         ...state,
+        //         forms: [...state.form_schema, {...getXMLDatafromSchemaType(action.schema_type).tree, id: rand()}]
+        //     }
         default:
             return state;
     }
 }
+
+// export function addForm(state = initialState) {
+//
+// }
