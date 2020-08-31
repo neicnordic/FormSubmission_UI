@@ -1,12 +1,6 @@
 import React from "react"
 import {useState} from "react";
 
-// function addRow() {
-//     let itm = document.getElementById("col").lastChild;
-//     let cln = itm.cloneNode(true);
-//     document.getElementById("col").appendChild(cln);
-// }
-
 
 const TagContent = props => {
     const [value, setValue] = useState("")
