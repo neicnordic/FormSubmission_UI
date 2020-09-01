@@ -38,11 +38,11 @@ export default function (state = initialState, action) {
                     xml_schema: action.schema
                 }]
             }
-        // case XML_SCHEMA_ACTIONS.ADD_FORM:
-        //     return {
-        //         ...state,
-        //         forms: [...state.form_schema, {...getXMLDatafromSchemaType(action.schema_type).tree, id: rand()}]
-        //     }
+        case XML_SCHEMA_ACTIONS.ADD_FORM:
+            return {
+                ...state,
+                chosen_schemas: [...state.chosen_schemas, {...getXMLDatafromSchemaType(action.schema_type).tree, id: rand()}]
+            }
         default:
             return state;
     }

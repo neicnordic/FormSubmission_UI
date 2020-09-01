@@ -5,6 +5,7 @@ import DatasetXML from "../schemas/Dataset"
 import ExperimentXML from "../schemas/Experiment"
 import PolicyXML from "../schemas/Policy"
 import RunXML from "../schemas/Run"
+import DACXML from "../schemas/DAC"
 
 export const XML_SCHEMA_ACTIONS = {
     SET_XML_SCHEMA: "SET_XML_SCHEMA",
@@ -49,6 +50,8 @@ export const getXMLDatafromSchemaType = (type) => {
             return PolicyXML
         case "Run":
             return RunXML
+        case "DAC":
+            return DACXML
         default:
             return null;
     }

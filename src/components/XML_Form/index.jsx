@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {connect} from "react-redux"
 import TagChild from "../TagChild"
 import "./style.css"
-// import {ADD_FORM} from "../../reducers/xmlReducer";
+import {ADD_FORM} from "../../reducers/xmlReducer";
 import {getXMLDatafromSchemaType} from "../../actions/XML_validator";
 
 const rand = () => Math.floor(Math.random() * 9000000);
@@ -11,11 +11,19 @@ const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
     const [formContent, setFormContent] = useState({})
 
+    // const addForm = (props) => {
+    //     console.log(props.state)
+    //     return {
+    //         ...props.state,
+    //         forms: [...this.state.chosen_schemas, {...getXMLDatafromSchemaType(this.state.schema_type).tree, id: rand()}]
+    //         // forms: [...this.state.chosen_schemas, {props., id: rand()}]
+    //     }
+    // };
+
 
     useEffect(() => {
         if (props.schemas) {
             let content = {}
-            console.log(props.schemas)
             // for (let d = 0; d < props.schemas.length; d++) {
             //     console.log(props.schemas[d])
             //     props.schemas[d].childs.map(child => child.name).forEach(name => content[name] = null);
@@ -44,13 +52,6 @@ const XMLForm = (props) => {
     };
 
 
-    const addForm = (props) => {
-        return {
-            ...props.state,
-            forms: [...this.state.chosen_schemas, {...getXMLDatafromSchemaType(this.state.schema_type).tree}]
-        }
-    };
-
     const parseTree = tree => {
         const treeName = tree.name
         const content = tree.childs.map(child =>
@@ -68,7 +69,7 @@ const XMLForm = (props) => {
                 </div>
 
                 <input className="xml_form__submit" type="submit"/>
-                <input type="button" onClick={addForm} value="Add one more "/>
+                <input type="button" onClick={ADD_FORM} value="Add one more "/>
             </>
         )
     }
