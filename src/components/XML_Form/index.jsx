@@ -15,13 +15,17 @@ const XMLForm = (props) => {
     useEffect(() => {
         if (props.schemas) {
             let content = {}
-            // const newArray = data.map(element => element.form_schema);
-
+            console.log(props.schemas)
             // for (let d = 0; d < props.schemas.length; d++) {
+            //     console.log(props.schemas[d])
+            //     props.schemas[d].childs.map(child => child.name).forEach(name => content[name] = null);
+            //     setFormContent(content);
+            //     setFormTreeComponents(parseTree(props.schemas));
+            // }
             props.schemas.childs.map(child => child.name).forEach(name => content[name] = null);
             setFormContent(content);
             setFormTreeComponents(parseTree(props.schemas));
-            // }
+
 
             // data.forEach(function (item) {
             //     schema.form_schema.childs.map(child => child.name).forEach(name => content[name] = null);
