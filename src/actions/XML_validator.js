@@ -1,6 +1,6 @@
 import StudyXML from "../schemas/Study"
 import SampleXML from "../schemas/Sample"
-// import AnalysisXML from "../schemas/Analysis"
+import AnalysisXML from "../schemas/Analysis"
 import DatasetXML from "../schemas/Dataset"
 import ExperimentXML from "../schemas/Experiment"
 import PolicyXML from "../schemas/Policy"
@@ -39,8 +39,8 @@ export const getXMLDatafromSchemaType = (type) => {
             return StudyXML
         case "Sample":
             return SampleXML
-        // case "Analysis":
-        //     return AnalysisXML
+        case "Analysis":
+            return AnalysisXML
         case "Dataset":
             return DatasetXML
         case "Experiment":

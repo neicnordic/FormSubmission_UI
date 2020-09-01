@@ -1,0 +1,12 @@
+<DAC_SET>
+    <DAC alias="TODO:Unique name for DAC" center_name="TODO: ACCOUNT CENTER_NAME ACRONYM" broker_name="EGA">
+        <TITLE>TODO: Formal DAC name</TITLE>
+        <CONTACTS>
+            <CONTACT name="TODO:name of contact" email="TODO: email address" organisation="TODO:name of organisation contact affiliated to" telephone_number="TODO:add telephone number"/>
+        </CONTACTS>
+        <!--
+ If you are submitting more than one contact, replicate the block <CONTACT> to
+       </CONTACTS> here, as  many times as necessary. 
+-->
+    </DAC>
+</DAC_SET>
