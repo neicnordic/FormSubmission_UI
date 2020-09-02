@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-<ANALYSIS_SET>
-    <ANALYSIS alias="TODO: UNIQUE NAME FOR ANALYSIS" center_name="TODO: center name abbreviation" broker_name="TODO: center name abbreviation" analysis_center="TODO: center name abbreviation" analysis_date="2011-11-18T10:10:10.0Z">
-        <TITLE>TODO: a descriptive title for the analysis shown is search results</TITLE>
-        <DESCRIPTION>TODO: a detailed description of the analysis</DESCRIPTION>
-        <STUDY_REF refname="TODO: STUDY ALIAS OF RELEVANT STUDY OBJECT" refcenter="TODO: center name abbreviation"/>
-        <SAMPLE_REF refname="TODO: SAMPLE ALIAS OF RELEVANT SAMPLE OBJECT 1" refcenter="TODO: center name abbreviation" label="TODO: the sample name in the VCF file"/>
-        <SAMPLE_REF refname="TODO: SAMPLE ALIAS OF RELEVANT SAMPLE OBJECT 2" refcenter="TODO: center name abbreviation" label="TODO: the sample name in the VCF file"/>
-        <ANALYSIS_TYPE>
-            <SAMPLE_PHENOTYPE> </SAMPLE_PHENOTYPE>
-        </ANALYSIS_TYPE>
-        <FILES>
-            <FILE filename="TODO: phenotype file name" filetype="phenotype_file" checksum_method="MD5" checksum="TODO: CHECKSUM" unencrypted_checksum="TODO: CHECKSUM"/>
-=======
 This XML file does not appear to have any style information associated with it. The document tree is shown below.
 <ANALYSIS_SET>
     <ANALYSIS alias="TODO: UNIQUE NAME FOR ANALYSIS" center_name="TODO: center name abbreviation" broker_name="TODO: center name abbreviation" analysis_center="TODO: center name abbreviation" analysis_date="2011-11-18T10:10:10.0Z">
@@ -64,7 +50,6 @@ TODO: a descriptive title for the analysis shown in search results
                 <"other"/>
                 
 -->
->>>>>>> change_form_style
         </FILES>
         <ANALYSIS_ATTRIBUTES>
             <ANALYSIS_ATTRIBUTE>
