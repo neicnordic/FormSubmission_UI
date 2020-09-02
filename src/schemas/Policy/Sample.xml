@@ -1,0 +1,26 @@
+<POLICY_SET>
+    <POLICY alias="s:UNIQUE POLICY NAME" center_name="TODO:ACCOUNT CENTER NAME ACRYONM" broker_name="EGA">
+        <!--
+if referring to an existing policy please replace 'alias' with accession="TODO:Insert accession number here" .
+            Contact ega-helpdesk@ebi.ac.uk if your are unsure of the policy accession you should use.
+-->
+        <TITLE>TO DO:Name of policy</TITLE>
+        <DAC_REF accession="TODO:Accession number" refcenter="TODO:REFERENCE CENTRE NAME (e.g. consortium name if appropriate"/>
+        <!--
+ A list of existing DAC accessions can be found here: https://www.ebi.ac.uk/ega/dacs. 
+-->
+        <POLICY_TEXT>”TODO: ADD POLICY TEXT HERE”</POLICY_TEXT>
+        <!--
+ Add your policy text into the XML or supply the files separately to ega-helpdesk@ebi.ac.uk. 
+        Policy documentation and statement examples can be found on the EGA website.
+-->
+        <POLICY_LINKS>
+            <POLICY_LINK>
+                <URL_LINK>
+                    <LABEL>Data Access Agreement </LABEL>
+                    <URL>TODO:WEBSITE ADDRESS</URL>
+                </URL_LINK>
+            </POLICY_LINK>
+        </POLICY_LINKS>
+    </POLICY>
+</POLICY_SET>

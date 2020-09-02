@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <ANALYSIS_SET>
     <ANALYSIS alias="TODO: UNIQUE NAME FOR ANALYSIS" center_name="TODO: center name abbreviation" broker_name="TODO: center name abbreviation" analysis_center="TODO: center name abbreviation" analysis_date="2011-11-18T10:10:10.0Z">
         <TITLE>TODO: a descriptive title for the analysis shown is search results</TITLE>
@@ -10,6 +11,60 @@
         </ANALYSIS_TYPE>
         <FILES>
             <FILE filename="TODO: phenotype file name" filetype="phenotype_file" checksum_method="MD5" checksum="TODO: CHECKSUM" unencrypted_checksum="TODO: CHECKSUM"/>
+=======
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<ANALYSIS_SET>
+    <ANALYSIS alias="TODO: UNIQUE NAME FOR ANALYSIS" center_name="TODO: center name abbreviation" broker_name="TODO: center name abbreviation" analysis_center="TODO: center name abbreviation" analysis_date="2011-11-18T10:10:10.0Z">
+        <TITLE>
+TODO: a descriptive title for the analysis shown in search results
+        </TITLE>
+        <DESCRIPTION>TODO: a detained description of the analysis</DESCRIPTION>
+        <STUDY_REF refname="TODO: STUDY ALIAS OF RELEVANT STUDY OBJECT" refcenter="TODO: center name abbreviation"/>
+        <!--...-->
+        <SAMPLE_REF refname="TODO: SAMPLE ALIAS OF RELEVANT SAMPLE OBJECT 1" refcenter="TODO: center name abbreviation" label="TODO: sample name in the BAM file"/>
+        <SAMPLE_REF refname="TODO: SAMPLE ALIAS OF RELEVANT SAMPLE OBJECT 2" refcenter="TODO: center name abbreviation" label="TODO: sample name in the BAM file"/>
+        <!--...-->
+        <EXPERIMENT_REF refname="TODO: EXPERIMENT ALIAS OF RELEVANT STUDY OBJECT" refcenter="TODO: center name abbreviation"/>
+        <RUN_REF refname="TODO: RUN ALIAS OF RELEVANT STUDY OBJECT" refcenter="TODO: center name abbreviation"/>
+        <ANALYSIS_TYPE>
+            <REFERENCE_ALIGNMENT>
+                <ASSEMBLY>
+                    <STANDARD refname="TODO: INSDC assembly name (e.g. GRCh37 or GRCh37.p1)" accession="TODO: INSDC assembly accession (e.g. GCA_000001405.1)"/>
+                </ASSEMBLY>
+                <SEQUENCE accession="TODO: INSDC sequence accession and version" label="TODO: reference sequence name in the BAM file"/>
+                <SEQUENCE accession="TODO: INSDC sequence accession and version" label="TODO: reference sequence name in the BAM file"/>
+            </REFERENCE_ALIGNMENT>
+        </ANALYSIS_TYPE>
+        <FILES>
+            <FILE filename="TODO: FILENAME.bam" filetype="bam" checksum_method="MD5" checksum="TODO: CHECKSUM" unencrypted_checksum="TODO: CHECKSUM"/>
+            <!--
+ Many other filetypes can be used to define your analysis file and multiple file types can be submitted for a single analysis.  For example, you may wish to
+                submit a readme_file and phenotype_file to accompany your bam file: 
+                <"cram"/>
+                <"tabix"/>
+                <"wig"/>
+                <"bed"/>
+                <"gff"/>
+                <"fasta"/>
+                <"contig_fasta"/>
+                <"contig_flatfile"/>
+                <"scaffold_fasta"/>
+                <"scaffold_flatfile"/>
+                <"scaffold_agp"/>
+                <"chromosome_fasta"/>
+                <"chromosome_flatfile"/>
+                <"chromosome_agp"/>
+                <"chromosome_list"/>
+                <"unlocalised_contig_list"/>
+                <"unlocalised_scaffold_list"/>
+                <"sample_list"/>
+                <"readme_file"/>
+                <"phenotype_file"/>
+                <"OxfordNanopore_native"/>
+                <"other"/>
+                
+-->
+>>>>>>> change_form_style
         </FILES>
         <ANALYSIS_ATTRIBUTES>
             <ANALYSIS_ATTRIBUTE>

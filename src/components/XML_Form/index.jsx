@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import { connect } from "react-redux"
+import React, {useEffect, useState} from 'react'
+import {connect} from "react-redux"
 import TagChild from "../TagChild"
 import "./style.css"
+import {ADD_FORM} from "../../reducers/xmlReducer";
+import {getXMLDatafromSchemaType} from "../../actions/XML_validator";
+
+const rand = () => Math.floor(Math.random() * 9000000);
 
 // main component that collects all TagChild component and assigns it
 // its own content, to build a tree based form for the user to submit
@@ -10,16 +14,32 @@ const XMLForm = (props) => {
     const [formTreeComponents, setFormTreeComponents] = useState(null)
     const [formContent, setFormContent] = useState({})
 
+    // const addForm = (props) => {
+    //     console.log(props.state)
+    //     return {
+    //         ...props.state,
+    //         forms: [...this.state.chosen_schemas, {...getXMLDatafromSchemaType(this.state.schema_type).tree, id: rand()}]
+    //         // forms: [...this.state.chosen_schemas, {props., id: rand()}]
+    //     }
+    // };
+
+
     useEffect(() => {
-        if (props.schema) {
+        if (props.schemas) {
             let content = {}
-
-            props.schema.childs.map(child => child.name).forEach(name => content[name] = null);
+            // for (let d = 0; d < props.schemas.length; d++) {
+            //     console.log(props.schemas[d])
+            //     props.schemas[d].childs.map(child => child.name).forEach(name => content[name] = null);
+            //     setFormContent(content);
+            //     setFormTreeComponents(parseTree(props.schemas));
+            // }
+            props.schemas.childs.map(child => child.name).forEach(name => content[name] = null);
             setFormContent(content);
+            setFormTreeComponents(parseTree(props.schemas));
 
-            setFormTreeComponents(parseTree(props.schema));
+
         }
-    }, [props.schema])
+    }, [props.schemas])
 
 
     const handleChildChange = (change, name) => {
@@ -36,18 +56,19 @@ const XMLForm = (props) => {
             <TagChild
                 handleChange={handleChildChange}
                 key={child.name}
-                child={child} />
+                child={child}/>
         )
         // returns a common div for all document types which the user can upload
 
         return (
             <>
-                <div className="xml_form__content">
-                    <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
+                <div id="insertion" className="xml_form__content">
+                    <h5>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h5>
                     {content}
                 </div>
-                <input className="xml_form__submit" type="submit">
-                </input>
+
+                <input className="xml_form__submit" type="submit"/>
+                <input type="button" onClick={ADD_FORM} value="Add one more "/>
             </>
         )
     }
@@ -56,7 +77,7 @@ const XMLForm = (props) => {
         e.preventDefault();
         console.log(formContent)
     }
-    
+
     return (
         <form className="xml_form__container" onSubmit={handleSubmit}>
             {formTreeComponents}
@@ -64,15 +85,19 @@ const XMLForm = (props) => {
     )
 }
 
+// export function addForm(state) {
+//     return updateStateToProps(state.xml_form.form_schema)
+// }
+
 const mapStateToProps = (state, ownProps) => ({
-    schema: state.xml_form.form_schema,
-    type: state.xml_form.schema_type
+    schemas: state.xml_form.chosen_schemas[0].form_schema
+    // type: state.xml_form.chosen_schemas[0].schema_type,
 })
 
-const mapDispatchToProps = dispatch => {
-    return {
 
-    }
+const mapDispatchToProps = dispatch => {
+    return {}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(XMLForm)
+
