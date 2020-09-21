@@ -71,6 +71,7 @@ const XMLForm = (props) => {
                     }, (error) => {
                         console.log(error.value);
                         alert(error.value);
+                        props.setLoadingState(false)
                     });
 
             } else {
@@ -80,10 +81,12 @@ const XMLForm = (props) => {
                 }
                 setFormTreeComponents(parseTree(newSchema));
                 props.setPopout({display: true, content: "Metadata couldn't be created. Check missing fields."})
+                props.setLoadingState(false)
             }
 
         } catch (e) {
             props.setPopout({display: true, content: "Metadata couldn't be created. Check missing fields."})
+            props.setLoadingState(false)
         }
         setTimeout(() => {
             props.setLoadingState(false)
