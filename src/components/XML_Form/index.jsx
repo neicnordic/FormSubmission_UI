@@ -66,27 +66,13 @@ const XMLForm = (props) => {
                     }
                 })
                     .then((response) => {
-                        // console.log(response);
-                        // return response.json;
-                        alert(response.statusText);
+                        alert(response);
+                        props.setLoadingState(false)
                     }, (error) => {
                         console.log(error.value);
                         alert(error.value);
                     });
 
-                // fetch("http://localhost:5000/upload", {
-                //     params: {'object_type': validationTree.name},
-                //     method: "POST",
-                //     headers: {
-                //         'Content-Type': 'application/json'
-                //     },
-                //     body: JSON.stringify(formData),
-                // })
-                //     .then(raw => {
-                //         if (raw.ok) {
-                //             return raw.json();
-                //         }
-                //     })
             } else {
                 let newSchema = {
                     ...props.schema,
@@ -152,7 +138,6 @@ const XMLForm = (props) => {
             let childs = child.childs
 
             if (Array.isArray(childs[0])) {
-                console.log(childs, 'lets switch')
                 childs = childs[0]
             }
 
@@ -192,7 +177,7 @@ const XMLForm = (props) => {
                     <h3>{treeName.replace(/[^a-zA-Z ]/g, " ")}</h3>
                     {content}
                 </div>
-                <input className="xml_form__submit" type="submit">
+                <input className="xml_form__submit" type="submit" data-testid="XML_form">
                 </input>
             </>
         )
@@ -246,7 +231,7 @@ const XMLForm = (props) => {
         )
     } else {
         return (
-            <form className="xml_form__container" ref={formEl} onSubmit={handleSubmit}>
+            <form className="xml_form__container" ref={formEl} onSubmit={handleSubmit} data-testid="XML_form">
                 {formTreeComponents}
             </form>
         )

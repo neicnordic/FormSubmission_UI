@@ -21,7 +21,7 @@ const InfoPopout = (props) => {
                 <p>
                     {content}
                 </p>
-                <button className={'xml_form__submit'} onClick={(e) => {
+                <button className={'xml_form__submit'} data-testid="XML_form" onClick={(e) => {
                     e.preventDefault();
                     props.setPopout({ display: false, content: "" })
                 }}>Close</button>
