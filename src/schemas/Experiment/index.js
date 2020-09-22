@@ -234,10 +234,10 @@ const tree = {
                         }
                     ]
                 },
-                {
-                    name: "EXPERIMENT_ATTRIBUTES",
-                    content: false
-                }
+                // {
+                //     name: "EXPERIMENT_ATTRIBUTES",
+                //     content: false
+                // }
             ]
         }
     ]
