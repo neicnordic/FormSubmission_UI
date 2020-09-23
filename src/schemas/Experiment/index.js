@@ -88,6 +88,16 @@ const tree = {
             name: "EXPERIMENT",
             content: false,
             placeholder: "An Experiment specifies of what will be sequenced and how the sequencing will be performed. It does not contain results. An Experiment is composed of a design, a platform selection, and processing parameters.",
+            meta: {
+                alias: {
+                    placeholder: "Unique name for submission",
+                    value: ""
+                },
+                center_name: {
+                    placeholder: "Center name abbreviation",
+                    value: ""
+                }
+            },
             childs: [
                 {
                     name: "TITLE",
@@ -190,25 +200,36 @@ const tree = {
                                 }
                             ]
                         },
-                        {
-                            name: "SPOT_DESCRIPTOR",
-                            content: false,
-                            placeholder: "The SPOT_DESCRIPTOR specifies how to decode the individual reads of interest from the monolithic spot sequence. The spot descriptor contains aspects of the experimental design, platform, and processing information. There will be two methods of specification: one will be an index into a table of typical decodings, the other being an exact specification. This construct is needed for loading data and for interpreting the loaded runs. It can be omitted if the loader can infer read layout (from multiple input files or from one input files)."
-                        },
-                        {
-                            name: ""
-                        }
+                        // {
+                        //     name: "SPOT_DESCRIPTOR",
+                        //     content: false,
+                        //     placeholder: "The SPOT_DESCRIPTOR specifies how to decode the individual reads of interest from the monolithic spot sequence. The spot descriptor contains aspects of the experimental design, platform, and processing information. There will be two methods of specification: one will be an index into a table of typical decodings, the other being an exact specification. This construct is needed for loading data and for interpreting the loaded runs. It can be omitted if the loader can infer read layout (from multiple input files or from one input files)."
+                        // },
+                        // {
+                        //     name: ""
+                        // }
                     ]
                 },
                 {
                     name: "PLATFORM",
                     content: false,
-
+                    childs: [
+                        {
+                            name: "ILLUMINA",
+                            content: false,
+                            childs: [
+                                {
+                                    name: "INSTRUMENT_MODEL",
+                                    content: true,
+                                    placeholder: "CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML",
+                                    value: ""
+                                }]
+                        }]
                 },
-                {
-                    name: "PROCESSING",
-                    content: false,
-                },
+                // {
+                //     name: "PROCESSING",
+                //     content: false,
+                // },
                 {
                     name: "EXPERIMENT_LINKS",
                     placeholder: "Links to resources related to this experiment or experiment set (publication, datasets, online databases).",
