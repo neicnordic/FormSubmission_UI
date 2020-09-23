@@ -146,24 +146,39 @@ const tree = {
                                 },
                                 {
                                     name: "LIBRARY_STRATEGY",
-                                    content: true,
                                     required: true,
                                     value: "",
-                                    // options: libraryStrategies
-                                },
+                                    meta: {
+                                        existing_library_strategies: {
+                                            placeholder: "Existing Library Strategies",
+                                            value: "",
+                                            options: libraryStrategies
+                                        }
+                                    }                                },
                                 {
                                     name: "LIBRARY_SOURCE",
-                                    content: true,
+                                    // content: true,
                                     required: true,
                                     value: "",
-                                    // options: librarySources
+                                    meta: {
+                                        existing_library_sources: {
+                                            placeholder: "Existing Library Sources",
+                                            value: "",
+                                            options: librarySources
+                                        }
+                                    }
                                 },
                                 {
                                     name: "LIBRARY_SELECTION",
-                                    content: true,
                                     required: true,
                                     value: "",
-                                    // options: librarySelection
+                                    meta: {
+                                        existing_libraries: {
+                                            placeholder: "Existing Libraries",
+                                            value: "",
+                                            options: librarySelection
+                                        }
+                                    }
                                 },
                                 {
                                     name: "LIBRARY_LAYOUT",
