@@ -6,11 +6,6 @@ const tree = {
             content: false,
             placeholder: "Describes an object that contains data access policy information.",
             meta: [{
-                // accession_id: {
-                //     required: true,
-                //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
-                //     value: ""
-                // },
                 alias: {
                     placeholder: "Unique name for submission",
                     value: ""
@@ -20,7 +15,6 @@ const tree = {
                     value: ""
                 }
             }],
-
 
             choice: ["POLICY_SET", "POLICY_FILE"],
             childs: [
@@ -81,11 +75,6 @@ const tree = {
                     content: true,
                     placeholder: "Name of policy"
                 },
-                //     accession_id: {
-                //         required: true,
-                //         placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
-                //         value: ""
-                //     }
 
                 {
                     name: "DAC_REF",
@@ -101,7 +90,7 @@ const tree = {
                     }
                 },
                 {
-                    name: "POLICY_SET",
+                    name: "POLICY_TEXT",
                     content: true,
                     placeholder: "POLICY TEXT HERE"
                 },
@@ -136,57 +125,57 @@ const tree = {
                         }
                     ]
                 },
-                {
-                    name: "DATA_USE",
-                    meta: {
-                        ontology: {
-                            value: "",
-                            placeholder: "Ontology abbreviation, e.g. DUO for Data Use Ontology"
-                        },
-                        code: {
-                            value: "",
-                            placeholder: "Code for the ontology"
-                        },
-                        version: {
-                            value: "",
-                            placeholder: "Data Use Ontology code version"
-                        }
-                    },
-                    content: false,
-                    placeholder: "Data use ontologies (DUO) related to the policy",
-
-                    multiple: true,
-                    min: 0,
-                    max: 1,
-                    childs: [
-                        {
-                            name: "MODIFIER",
-                            content: false,
-                            placeholder: "Database cross-reference.",
-                            meta: {
-                                db: {
-                                    value: "",
-                                    placeholder: "Ontology abbreviation, e.g. DUO for Data Use Ontology"
-                                },
-                                id: {
-                                    value: "",
-                                    placeholder: ""
-                                },
-                                secondaryId: {
-                                    value: "",
-                                    placeholder: ""
-                                }
-                            }
-                        },
-                        {
-                            name: "URL",
-                            content: true,
-                            placeholder: "Link to URL describing the Data Use",
-                            value: ""
-
-                        }
-                    ]
-                },
+                // {
+                //     name: "DATA_USE",
+                //     meta: {
+                //         ontology: {
+                //             value: "",
+                //             placeholder: "Ontology abbreviation, e.g. DUO for Data Use Ontology"
+                //         },
+                //         code: {
+                //             value: "",
+                //             placeholder: "Code for the ontology"
+                //         },
+                //         version: {
+                //             value: "",
+                //             placeholder: "Data Use Ontology code version"
+                //         }
+                //     },
+                //     content: false,
+                //     placeholder: "Data use ontologies (DUO) related to the policy",
+                //
+                //     multiple: true,
+                //     min: 0,
+                //     max: 1,
+                //     childs: [
+                //         {
+                //             name: "MODIFIER",
+                //             content: false,
+                //             placeholder: "Database cross-reference.",
+                //             meta: {
+                //                 db: {
+                //                     value: "",
+                //                     placeholder: "Ontology abbreviation, e.g. DUO for Data Use Ontology"
+                //                 },
+                //                 id: {
+                //                     value: "",
+                //                     placeholder: ""
+                //                 },
+                //                 secondaryId: {
+                //                     value: "",
+                //                     placeholder: ""
+                //                 }
+                //             }
+                //         },
+                //         {
+                //             name: "URL",
+                //             content: true,
+                //             placeholder: "Link to URL describing the Data Use",
+                //             value: ""
+                //
+                //         }
+                //     ]
+                // },
 
                 {
                     name: "POLICY_ATTRIBUTES",
@@ -219,7 +208,6 @@ const tree = {
                             ]
                         }
                     ]
-
                 }
             ]
         }
