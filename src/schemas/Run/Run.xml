@@ -1,5 +1,7 @@
-<RUN_SET xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="ftp://ftp.sra.ebi.ac.uk/meta/xsd/sra_1_5/SRA.run.xsd">
-    <RUN alias="TODO: UNIQUE NAME FOR RUN" center_name="TODO: ACCOUNT CENTER_NAME ACRONYM" run_center="TODO: ACCOUNT CENTER_NAME ACRONYM" run_date="2008-07-02T10:00:00">
+<RUN_SET xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="ftp://ftp.sra.ebi.ac.uk/meta/xsd/sra_1_5/SRA.run.xsd">
+    <RUN alias="TODO: UNIQUE NAME FOR RUN" center_name="TODO: ACCOUNT CENTER_NAME ACRONYM"
+         run_center="TODO: ACCOUNT CENTER_NAME ACRONYM" run_date="2008-07-02T10:00:00">
         <!--
  run_center is optional but should be used if sequencing was carried out 
              elsewhere. It should use an acronym/abbreviation from a controlled vocabulary. 
@@ -17,10 +19,13 @@
         <RUN_TYPE>
             <REFERENCE_ALIGNMENT>
                 <ASSEMBLY>
-                    <STANDARD refname="TODO: INSDC assembly name (e.g. GRCh37 or GRCh37.p1)" accession="TODO: INSDC assembly accession (e.g. GCA_000001405.1)"/>
+                    <STANDARD refname="TODO: INSDC assembly name (e.g. GRCh37 or GRCh37.p1)"
+                              accession="TODO: INSDC assembly accession (e.g. GCA_000001405.1)"/>
                 </ASSEMBLY>
-                <SEQUENCE accession="TODO: INSDC sequence accession and version" label="TODO: reference sequence name in the BAM file"/>
-                <SEQUENCE accession="TODO: INSDC sequence accession and version" label="TODO: reference sequence name in the BAM file"/>
+                <SEQUENCE accession="TODO: INSDC sequence accession and version"
+                          label="TODO: reference sequence name in the BAM file"/>
+                <SEQUENCE accession="TODO: INSDC sequence accession and version"
+                          label="TODO: reference sequence name in the BAM file"/>
             </REFERENCE_ALIGNMENT>
         </RUN_TYPE>
         <DATA_BLOCK member_name="TODO: FOR DEMULTIPLEXED DATA ONLY (see note below)">
@@ -30,7 +35,8 @@
                  the member_name attribute in run.xml should be removed. 
 -->
             <FILES>
-                <FILE filename="TODO: FILENAME1" filetype="TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML" checksum_method="MD5" checksum="TODO: CHECKSUM1" unencrypted_checksum="TODO:CHECKSUM2"/>
+                <FILE filename="TODO: FILENAME1" filetype="TODO: CHOOSE FROM CONTROLLED VOCABULARY AT END OF XML"
+                      checksum_method="MD5" checksum="TODO: CHECKSUM1" unencrypted_checksum="TODO:CHECKSUM2"/>
             </FILES>
         </DATA_BLOCK>
     </RUN>
@@ -39,19 +45,19 @@
         as many times as necessary. 
 -->
 </RUN_SET>
-<!--
+        <!--
 
- Controlled vocabulary for filetype:
-    "srf"
-    "sff"
-    "fastq"
-    "cram" 
-    "bam"
-    "Illumina_native_qseq"
-    "Illumina_native_scarf"
-    "Illumina_native_fastq"
-    "SOLiD_native_csfasta"
-    "SOLiD_native_qual"
-    "PacBio_HDF5
-     "CompleteGenomics_native"
--->
+         Controlled vocabulary for filetype:
+            "srf"
+            "sff"
+            "fastq"
+            "cram"
+            "bam"
+            "Illumina_native_qseq"
+            "Illumina_native_scarf"
+            "Illumina_native_fastq"
+            "SOLiD_native_csfasta"
+            "SOLiD_native_qual"
+            "PacBio_HDF5
+             "CompleteGenomics_native"
+        -->

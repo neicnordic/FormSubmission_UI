@@ -6,6 +6,11 @@ const tree = {
             name: "RUN",
             content: false,
             meta: {
+                // accession_id: {
+                //     required: true,
+                //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                //     value: ""
+                // },
                 alias: {
                     placeholder: "UNIQUE NAME FOR RUN",
                     value: ""
@@ -24,20 +29,82 @@ const tree = {
                 }
             },
             childs: [
+                // {
+                //     name: "EXPERIMENT_REF",
+                //     content: false,
+                //     meta: {
+                //         refname: {
+                //             placeholder: "EXPERIMENT ALIAS OF RELEVANT EXPERIMENT OBJECT",
+                //             value: "",
+                //         }
+                //     }
+                // },
                 {
-                    name: "EXPERIMENT_REF",
+                    name: "FILES",
                     content: false,
-                    meta: {
-                        refname: {
-                            placeholder: "EXPERIMENT ALIAS OF RELEVANT EXPERIMENT OBJECT",
-                            value: "",
+                    childs: [
+                        {
+                            name: "FILE",
+                            content: false,
+                            meta: {
+                                accession_id: {
+                                    required: true,
+                                    placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                                    value: ""
+                                },
+                                filename: {
+                                    placeholder: " File name",
+                                    value: "",
+                                    required: true
+                                },
+                                filetype: {
+                                    placeholder: "File type",
+                                    options: [
+                                        "srf",
+                                        "sff",
+                                        "fastq",
+                                        "cram",
+                                        "bam",
+                                        "Illumina_native_qseq",
+                                        "Illumina_native_scarf",
+                                        "Illumina_native_fastq",
+                                        "SOLiD_native_csfasta",
+                                        "SOLiD_native_qual",
+                                        "PacBio_HDF5",
+                                        "CompleteGenomics_native"
+                                    ],
+                                    value: ""
+                                },
+                                checksum_method: {
+                                    placeholder: "MD5",
+                                    value: ""
+                                },
+                                checksum: {
+                                    placeholder: "Checksum1",
+                                    value: ""
+                                },
+                                unencrypted_checksum: {
+                                    placeholder: "Checksum2",
+                                    value: ""
+                                }
+                            }
                         }
-                    }
+                    ]
                 },
                 {
                     name: "RUN_TYPE",
                     content: false,
                     childs: [
+                        {
+                            name: "EXPERIMENT_REF",
+                            content: false,
+                            meta: {
+                                refname: {
+                                    placeholder: "EXPERIMENT ALIAS OF RELEVANT EXPERIMENT OBJECT",
+                                    value: "",
+                                }
+                            }
+                        },
                         {
                             name: "REFERENCE_ALIGNMENT",
                             content: false,
@@ -89,54 +156,59 @@ const tree = {
                             value: ""
                         }
                     },
-                    childs: [
-                        {
-                            name: "FILES",
-                            content: false,
-                            childs: [
-                                {
-                                    name: "FILE",
-                                    content: false,
-                                    meta: {
-                                        filename: {
-                                            placeholder: " File name",
-                                            value: ""
-                                        },
-                                        filetype: {
-                                            placeholder: "File type",
-                                            options: [
-                                                "srf",
-                                                "sff",
-                                                "fastq",
-                                                "cram",
-                                                "bam",
-                                                "Illumina_native_qseq",
-                                                "Illumina_native_scarf",
-                                                "Illumina_native_fastq",
-                                                "SOLiD_native_csfasta",
-                                                "SOLiD_native_qual",
-                                                "PacBio_HDF5",
-                                                "CompleteGenomics_native"
-                                            ],
-                                            value: ""
-                                        },
-                                        checksum_method: {
-                                            placeholder: "MD5",
-                                            value: ""
-                                        },
-                                        checksum: {
-                                            placeholder: "Checksum1",
-                                            value: ""
-                                        },
-                                        unencrypted_checksum: {
-                                            placeholder: "Checksum2",
-                                            value: ""
-                                        }
-                                    }
-                                }
-                            ]
-                        }
-                    ]
+                    // childs: [
+                    // {
+                    //     name: "FILES",
+                    //     content: false,
+                    //     childs: [
+                    //         {
+                    //             name: "FILE",
+                    //             content: false,
+                    //             meta: {
+                    //                 accession_id: {
+                    //                     required: true,
+                    //                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                    //                     value: ""
+                    //                 },
+                    //                 filename: {
+                    //                     placeholder: " File name",
+                    //                     value: ""
+                    //                 },
+                    //                 filetype: {
+                    //                     placeholder: "File type",
+                    //                     options: [
+                    //                         "srf",
+                    //                         "sff",
+                    //                         "fastq",
+                    //                         "cram",
+                    //                         "bam",
+                    //                         "Illumina_native_qseq",
+                    //                         "Illumina_native_scarf",
+                    //                         "Illumina_native_fastq",
+                    //                         "SOLiD_native_csfasta",
+                    //                         "SOLiD_native_qual",
+                    //                         "PacBio_HDF5",
+                    //                         "CompleteGenomics_native"
+                    //                     ],
+                    //                     value: ""
+                    //                 },
+                    //                 checksum_method: {
+                    //                     placeholder: "enter MD5 or SHA-256",
+                    //                     value: ""
+                    //                 },
+                    //                 checksum: {
+                    //                     placeholder: "Checksum1",
+                    //                     value: ""
+                    //                 },
+                    //                 unencrypted_checksum: {
+                    //                     placeholder: "Checksum2",
+                    //                     value: ""
+                    //                 }
+                    //             }
+                    //         }
+                    //     ]
+                    // }
+                    // ]
                 }
             ]
         }

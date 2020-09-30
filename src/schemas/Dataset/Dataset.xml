@@ -3,7 +3,6 @@
         <TITLE>TODO:DATASET TITLE e.g. Control samples for X</TITLE>
         <DATASET_TYPE>Whole genome sequencing</DATASET_TYPE>
         <RUN_REF accession="TODO:ACCESSION NUMBER(EGAR)"/>
-        <RUN_REF accession="TODO:ACCESSION NUMBER(EGAR)"/>
         <ANALYSIS_REF accession="TO DO: ACCESSION NUMBER (EGAZ)"/>
         <!--
 EGAR/EGAZ accession numbers are provided upon the receipt of the submission of

@@ -5,7 +5,12 @@ const tree = {
             name: "POLICY",
             content: false,
             placeholder: "Describes an object that contains data access policy information.",
-            meta: {
+            meta: [{
+                // accession_id: {
+                //     required: true,
+                //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                //     value: ""
+                // },
                 alias: {
                     placeholder: "Unique name for submission",
                     value: ""
@@ -14,14 +19,74 @@ const tree = {
                     placeholder: "Center name abbreviation",
                     value: ""
                 }
-            },
+            }],
+
+
             choice: ["POLICY_SET", "POLICY_FILE"],
             childs: [
+                {
+                    name: "FILES",
+                    content: false,
+                    childs: [
+                        {
+                            name: "FILE",
+                            content: false,
+                            meta: {
+                                accession_id: {
+                                    required: true,
+                                    placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                                    value: ""
+                                },
+                                filename: {
+                                    placeholder: " File name",
+                                    value: "",
+                                    required: true
+                                },
+                                filetype: {
+                                    placeholder: "File type",
+                                    options: [
+                                        "srf",
+                                        "sff",
+                                        "fastq",
+                                        "cram",
+                                        "bam",
+                                        "Illumina_native_qseq",
+                                        "Illumina_native_scarf",
+                                        "Illumina_native_fastq",
+                                        "SOLiD_native_csfasta",
+                                        "SOLiD_native_qual",
+                                        "PacBio_HDF5",
+                                        "CompleteGenomics_native"
+                                    ],
+                                    value: ""
+                                },
+                                checksum_method: {
+                                    placeholder: "MD5",
+                                    value: ""
+                                },
+                                checksum: {
+                                    placeholder: "Checksum1",
+                                    value: ""
+                                },
+                                unencrypted_checksum: {
+                                    placeholder: "Checksum2",
+                                    value: ""
+                                }
+                            }
+                        }
+                    ]
+                },
                 {
                     name: "TITLE",
                     content: true,
                     placeholder: "Name of policy"
                 },
+                //     accession_id: {
+                //         required: true,
+                //         placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
+                //         value: ""
+                //     }
+
                 {
                     name: "DAC_REF",
                     meta: {
@@ -93,12 +158,12 @@ const tree = {
                     multiple: true,
                     min: 0,
                     max: 1,
-                    childs: [     
+                    childs: [
                         {
                             name: "MODIFIER",
                             content: false,
                             placeholder: "Database cross-reference.",
-                            meta:{
+                            meta: {
                                 db: {
                                     value: "",
                                     placeholder: "Ontology abbreviation, e.g. DUO for Data Use Ontology"
