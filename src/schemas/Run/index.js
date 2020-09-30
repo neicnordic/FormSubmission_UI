@@ -11,22 +11,22 @@ const tree = {
                 //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
                 //     value: ""
                 // },
-                alias: {
-                    placeholder: "UNIQUE NAME FOR RUN",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
-                    value: ""
-                },
-                run_center: {
-                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
-                    value: ""
-                },
-                run_date: {
-                    placeholder: "",
-                    value: ""
-                }
+                // alias: {
+                //     placeholder: "UNIQUE NAME FOR RUN",
+                //     value: ""
+                // },
+                // center_name: {
+                //     placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                //     value: ""
+                // },
+                // run_center: {
+                //     placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                //     value: ""
+                // },
+                // run_date: {
+                //     placeholder: "",
+                //     value: ""
+                // }
             },
             childs: [
                 // {
@@ -47,6 +47,22 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "UNIQUE NAME FOR RUN",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                                    value: ""
+                                },
+                                run_center: {
+                                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                                    value: ""
+                                },
+                                run_date: {
+                                    placeholder: "",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

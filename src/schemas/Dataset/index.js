@@ -4,21 +4,21 @@ const tree = {
     childs: [
         {
             name: "DATASET",
-            content: "false",
-            meta: {
-                alias: {
-                    placeholder: "Unique name.",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: "ACCOUNT CENTER_NAME ACRONYM",
-                    value: ""
-                },
-                broker_name: {
-                    placeholder: "EGA",
-                    value: ""
-                }
-            },
+            content: false,
+            // meta: {
+            //     // alias: {
+            //     //     placeholder: "Unique name.",
+            //     //     value: ""
+            //     // },
+            //     // center_name: {
+            //     //     placeholder: "ACCOUNT CENTER_NAME ACRONYM",
+            //     //     value: ""
+            //     // },
+            //     // broker_name: {
+            //     //     placeholder: "EGA",
+            //     //     value: ""
+            //     // }
+            // },
             childs: [
                 {
                     name: "FILES",
@@ -28,6 +28,18 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name.",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: "ACCOUNT CENTER_NAME ACRONYM",
+                                    value: ""
+                                },
+                                broker_name: {
+                                    placeholder: "EGA",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

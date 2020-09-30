@@ -6,26 +6,26 @@ const tree = {
             name: "ANALYSIS",
             content: false,
             meta: {
-                alias: {
-                    placeholder: "UNIQUE NAME FOR ANALYSIS",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                },
-                broker_name: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                },
-                analysis_center: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                },
-                analysis_date: {
-                    placeholder: "Analysis date",
-                    value: ""
-                }
+                // alias: {
+                //     placeholder: "UNIQUE NAME FOR ANALYSIS",
+                //     value: ""
+                // },
+                // center_name: {
+                //     placeholder: "Center name abbreviation",
+                //     value: ""
+                // },
+                // broker_name: {
+                //     placeholder: "Center name abbreviation",
+                //     value: ""
+                // },
+                // analysis_center: {
+                //     placeholder: "Center name abbreviation",
+                //     value: ""
+                // },
+                // analysis_date: {
+                //     placeholder: "Analysis date",
+                //     value: ""
+                // }
             },
             childs: [
                 {
@@ -36,6 +36,26 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "UNIQUE NAME FOR ANALYSIS",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
+                                broker_name: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
+                                analysis_center: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
+                                analysis_date: {
+                                    placeholder: "Analysis date",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

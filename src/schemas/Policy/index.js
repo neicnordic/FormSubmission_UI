@@ -5,16 +5,16 @@ const tree = {
             name: "POLICY",
             content: false,
             placeholder: "Describes an object that contains data access policy information.",
-            meta: [{
-                alias: {
-                    placeholder: "Unique name for submission",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                }
-            }],
+            // meta: [{
+            //     // alias: {
+            //     //     placeholder: "Unique name for submission",
+            //     //     value: ""
+            //     // },
+            //     // center_name: {
+            //     //     placeholder: "Center name abbreviation",
+            //     //     value: ""
+            //     // }
+            // }],
 
             choice: ["POLICY_SET", "POLICY_FILE"],
             childs: [
@@ -26,6 +26,14 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name for submission",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

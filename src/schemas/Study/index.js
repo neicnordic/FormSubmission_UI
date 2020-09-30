@@ -14,16 +14,15 @@ const tree = {
         {
             name: "STUDY",
             content: false,
-
             meta: {
-                alias: {
-                    placeholder: "Unique name for submission",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                }
+                // alias: {
+                //     placeholder: "Unique name for submission",
+                //     value: ""
+                // },
+                // center_name: {
+                //     placeholder: "Center name abbreviation",
+                //     value: ""
+                // }
             },
             childs: [
                 {
@@ -34,6 +33,14 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name for submission",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
@@ -115,11 +122,6 @@ const tree = {
                                         "Other"
                                     ]
                                 },
-                                // accession_id: {
-                                //     required: true,
-                                //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
-                                //     value: ""
-                                // }
                             },
                         },
                         {

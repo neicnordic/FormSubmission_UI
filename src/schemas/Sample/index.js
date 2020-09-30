@@ -11,12 +11,12 @@ const tree = {
                 //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
                 //     value: ""
                 // },
-                alias: {
-                    placeholder: "Unique name for submission"
-                },
-                center_name: {
-                    placeholder: "Center name abbreviation"
-                }
+                // alias: {
+                //     placeholder: "Unique name for submission"
+                // },
+                // center_name: {
+                //     placeholder: "Center name abbreviation"
+                // }
             },
             childs: [
                 {
@@ -27,6 +27,12 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name for submission"
+                                },
+                                center_name: {
+                                    placeholder: "Center name abbreviation"
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

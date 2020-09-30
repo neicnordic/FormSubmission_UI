@@ -5,18 +5,18 @@ const tree = {
         {
             name: "DAC",
             meta: {
-                alias: {
-                    placeholder: "Unique name for DAC",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
-                    value: ""
-                },
-                broker_name: {
-                    placeholder: "EGA",
-                    value: ""
-                }
+                // alias: {
+                //     placeholder: "Unique name for DAC",
+                //     value: ""
+                // },
+                // center_name: {
+                //     placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                //     value: ""
+                // },
+                // broker_name: {
+                //     placeholder: "EGA",
+                //     value: ""
+                // }
             },
             childs: [
                 {
@@ -27,6 +27,18 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name for DAC",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: " ACCOUNT CENTER_NAME ACRONYM",
+                                    value: ""
+                                },
+                                broker_name: {
+                                    placeholder: "EGA",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",

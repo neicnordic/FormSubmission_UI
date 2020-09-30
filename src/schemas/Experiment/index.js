@@ -89,14 +89,14 @@ const tree = {
             content: false,
             placeholder: "An Experiment specifies of what will be sequenced and how the sequencing will be performed. It does not contain results. An Experiment is composed of a design, a platform selection, and processing parameters.",
             meta: {
-                alias: {
-                    placeholder: "Unique name for submission",
-                    value: ""
-                },
-                center_name: {
-                    placeholder: "Center name abbreviation",
-                    value: ""
-                }
+                // alias: {
+                //     placeholder: "Unique name for submission",
+                //     value: ""
+                // },
+                // center_name: {
+                //     placeholder: "Center name abbreviation",
+                //     value: ""
+                // }
             },
             childs: [
                 {
@@ -107,6 +107,14 @@ const tree = {
                             name: "FILE",
                             content: false,
                             meta: {
+                                alias: {
+                                    placeholder: "Unique name for submission",
+                                    value: ""
+                                },
+                                center_name: {
+                                    placeholder: "Center name abbreviation",
+                                    value: ""
+                                },
                                 accession_id: {
                                     required: true,
                                     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
