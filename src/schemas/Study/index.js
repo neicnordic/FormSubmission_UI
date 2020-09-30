@@ -16,11 +16,6 @@ const tree = {
             content: false,
 
             meta: {
-                // accession_id: {
-                //     required: true,
-                //     placeholder: "Identifies a record by its accession. The scope of resolution is the entire Archive",
-                //     value: ""
-                // },
                 alias: {
                     placeholder: "Unique name for submission",
                     value: ""
