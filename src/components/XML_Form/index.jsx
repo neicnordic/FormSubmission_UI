@@ -59,10 +59,6 @@ const XMLForm = (props) => {
                 formData.append('file', file);
                 formData.append('filename', validationTree.name + '.xml');
 
-                // fetch('http://localhost:5000/upload')
-                //
-                //     .then(response => response.json())
-
                 return TRYGGVE_API.post(`/upload`, formData, {
                     params: {'object_type': validationTree.name},
                     headers: {
@@ -72,18 +68,12 @@ const XMLForm = (props) => {
                 })
                     .then((response) => {
                         var clean_resp = JSON.stringify(response);
-
-                        var resp_length = clean_resp.length
                         JSON.parse(clean_resp, (key, value) => {
                             if (key == 'message') {
                                 alert(value)
                             }
                         });
-                        // for (let i = 0; i < resp_length; i++) {
-                        //     if(clean_resp[i] == 'message') {
-                        //         alert(clean_resp[i].valueOf());
-                        //     }
-                        // }
+
                         props.setLoadingState(false)
                     }, (error) => {
                         var clean_resp = JSON.stringify(error);
